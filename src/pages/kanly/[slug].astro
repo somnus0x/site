@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const protocols = await getCollection('kanly');
+  return protocols.map((protocol) => ({
+    params: { slug: protocol.data.slug },
+    props: { protocol },
+  }));
+}
+
+const { protocol } = Astro.props;
+const { Content } = await render(protocol);
+---
+
+<Layout title={`kanly / ${protocol.data.title}`} description={protocol.data.description}>
+  <div class="space-y-6">
+    <div class="text-sm text-muted mb-4">
+      <a href="/kanly" class="hover:text-accent">kanly</a> / {protocol.data.slug}
+    </div>
+
+    <article class="max-w-none">
+      <Content />
+    </article>
+
+    <div class="mt-12 pt-6 border-t border-surface">
+      <a href="/kanly" class="text-accent hover:underline">← back to protocols</a>
+    </div>
+  </div>
+</Layout>

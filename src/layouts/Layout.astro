@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "PM at Initia. Builder." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="max-w-[42rem] mx-auto px-6 py-12">
+      <nav class="mb-12">
+        <a href="/" class="text-accent hover:underline">isagi</a>
+        <span class="text-muted mx-3">/</span>
+        <a href="/kanly" class="text-text hover:text-accent hover:underline">kanly</a>
+        <span class="text-muted mx-3">/</span>
+        <a href="/projects" class="text-text hover:text-accent hover:underline">projects</a>
+        <span class="text-muted mx-3">/</span>
+        <a href="/writing" class="text-text hover:text-accent hover:underline">writing</a>
+      </nav>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="mt-24 pt-6 border-t border-surface text-muted text-sm">
+        <a href="https://github.com/somnus0x" target="_blank" rel="noopener" class="hover:text-accent">github</a>
+        <span class="mx-3">/</span>
+        <a href="https://x.com/openclaw" target="_blank" rel="noopener" class="hover:text-accent">x</a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0a0a;
+  --color-surface: #1a1a1a;
+  --color-text: #e0e0e0;
+  --color-muted: #707070;
+  --color-accent: #00ccaa;
+  --color-danger: #8b0000;
+
+  --font-mono: ui-monospace, "JetBrains Mono", "Berkeley Mono", "SF Mono", Menlo, Monaco, "Cascadia Code", "Roboto Mono", "Courier New", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Prose styles for markdown content */
+article h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+article h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+article h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+article p {
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+article ul,
+article ol {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  margin-left: 1.5rem;
+}
+
+article li {
+  margin-bottom: 0.5rem;
+}
+
+article strong {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+article code {
+  background-color: var(--color-surface);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+article pre {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+article pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+article a {
+  color: var(--color-accent);
+}
+
+article a:hover {
+  text-decoration: underline;
+}
