@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "start": "serve dist -s -p 3000",
+    "start": "serve dist -p 3000",
     "preview": "astro preview",
     "astro": "astro"
   },
