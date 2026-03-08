@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "start": "serve dist -s -l tcp://0.0.0.0:${PORT:-3000}",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
+    "serve": "^14.2.6",
     "tailwindcss": "^4.2.1"
   }
 }
