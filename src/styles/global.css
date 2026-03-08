@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0a0a0a;
-  --color-surface: #1a1a1a;
-  --color-text: #e0e0e0;
-  --color-muted: #707070;
-  --color-accent: #00ccaa;
-  --color-danger: #8b0000;
+  --color-bg: #0a0806;
+  --color-surface: #16120e;
+  --color-surface-2: #1e1914;
+  --color-text: #e8dcc8;
+  --color-dim: #9a8b74;
+  --color-faint: #6b5e4d;
 
+  --color-spice: #d4943a;
+  --color-gold: #c4a265;
+  --color-sand: #a89b6a;
+  --color-crimson: #c23030;
+  --color-safe: #8b9a5e;
+  --color-water: #4a7b8c;
+  --color-violet: #8b7bb5;
+
+  --color-border: rgba(212, 168, 100, 0.08);
+  --color-border-hover: rgba(212, 168, 100, 0.18);
+  --color-border-strong: rgba(212, 168, 100, 0.30);
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "Crimson Pro", Georgia, serif;
   --font-mono: ui-monospace, "JetBrains Mono", "Berkeley Mono", "SF Mono", Menlo, Monaco, "Cascadia Code", "Roboto Mono", "Courier New", monospace;
 }
 
@@ -20,15 +34,17 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-mono);
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(212, 148, 58, 0.03) 0%, transparent 70%);
+  background-attachment: fixed;
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-spice);
   text-decoration: none;
 }
 
@@ -36,25 +52,33 @@ a:hover {
   text-decoration: underline;
 }
 
+a.no-underline,
+a.no-underline:hover {
+  text-decoration: none;
+}
+
 /* Prose styles for markdown content */
 article h1 {
+  font-family: var(--font-display);
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: normal;
   margin-bottom: 1.5rem;
   color: var(--color-text);
 }
 
 article h2 {
+  font-family: var(--font-display);
   font-size: 1.75rem;
-  font-weight: bold;
+  font-weight: normal;
   margin-top: 2rem;
   margin-bottom: 1rem;
   color: var(--color-text);
 }
 
 article h3 {
+  font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: normal;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
@@ -62,8 +86,8 @@ article h3 {
 
 article p {
   color: var(--color-text);
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
 }
 
 article ul,
@@ -75,26 +99,27 @@ article ol {
 
 article li {
   margin-bottom: 0.5rem;
+  line-height: 1.8;
 }
 
 article strong {
-  color: var(--color-accent);
+  color: var(--color-spice);
   font-weight: bold;
 }
 
 article code {
   background-color: var(--color-surface);
   padding: 0.125rem 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
   font-size: 0.875rem;
   font-family: var(--font-mono);
 }
 
 article pre {
   background-color: var(--color-surface);
-  border: 1px solid var(--color-surface);
+  border: 1px solid var(--color-border);
   padding: 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   overflow-x: auto;
   margin-bottom: 1rem;
 }
@@ -105,9 +130,31 @@ article pre code {
 }
 
 article a {
-  color: var(--color-accent);
+  color: var(--color-spice);
 }
 
 article a:hover {
   text-decoration: underline;
 }
+
+/* Fade-up animation */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }

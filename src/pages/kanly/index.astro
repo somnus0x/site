@@ -3,35 +3,69 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const protocols = (await getCollection('kanly')).sort((a, b) => a.data.order - b.data.order);
+
+const protocolColors: Record<string, { text: string; border: string }> = {
+  handoff: { text: 'text-gold', border: 'hover:border-gold/30' },
+  spec: { text: 'text-spice', border: 'hover:border-spice/30' },
+  scope: { text: 'text-water', border: 'hover:border-water/30' },
+  learn: { text: 'text-sand', border: 'hover:border-sand/30' },
+  guard: { text: 'text-crimson', border: 'hover:border-crimson/30' },
+  dissent: { text: 'text-violet', border: 'hover:border-violet/30' },
+};
+
+const protocolCommands: Record<string, string[]> = {
+  handoff: ['write', 'check', 'clear'],
+  spec: ['bind', 'note', 'check', 'diff'],
+  scope: ['add', 'check', 'list'],
+  learn: ['add', 'check', 'list'],
+  guard: ['classify', 'check', 'tripwire'],
+  dissent: ['always-on', 'review', 'override'],
+};
 ---
 
-<Layout title="kanly" description="Formal vendetta protocols for honest intellectual conflict">
-  <div class="space-y-8">
-    <h1 class="text-4xl font-bold">kanly</h1>
+<Layout title="kanly" description="Formal vendetta protocols for honest intellectual conflict" wide>
+  <div class="space-y-10">
+    <div class="animate-fade-up">
+      <p class="font-mono text-xs uppercase tracking-widest text-spice mb-3">Protocols</p>
+      <h1 class="font-display text-5xl font-normal mb-4">kanly</h1>
+    </div>
 
-    <div class="text-text leading-relaxed space-y-4">
+    <div class="text-lg text-text leading-loose space-y-4 animate-fade-up delay-1">
       <p>formal vendetta protocols for honest intellectual conflict.</p>
-
       <p>inspired by dune's kanly — a structured framework for resolving disputes without destroying the relationship. rules that make disagreement productive instead of destructive.</p>
     </div>
 
-    <div class="mt-8">
-      <h2 class="text-2xl font-bold mb-4">usage</h2>
-      <p class="text-text leading-relaxed">invoke a protocol when you need friction that prevents mistakes, not friction that slows you down. these aren't commands — they're safety checks. use them when building with AI assistants, or when working in high-stakes domains where mistakes are expensive.</p>
+    <div class="mt-4 animate-fade-up delay-2">
+      <p class="text-dim text-lg leading-relaxed">invoke a protocol when you need friction that prevents mistakes, not friction that slows you down. these aren't commands — they're safety checks.</p>
     </div>
 
-    <div class="mt-12">
-      <h2 class="text-2xl font-bold mb-6">protocols</h2>
-      <div class="space-y-6">
-        {protocols.map((protocol) => (
-          <a
-            href={`/kanly/${protocol.data.slug}`}
-            class="block p-6 border border-surface hover:border-accent transition-colors"
-          >
-            <h3 class="text-xl font-bold text-accent mb-2">{protocol.data.title}</h3>
-            <p class="text-muted">{protocol.data.description}</p>
-          </a>
-        ))}
+    <div class="mt-8 bg-surface border border-border rounded-xl p-5 animate-fade-up delay-2">
+      <p class="font-mono text-xs uppercase tracking-widest text-faint mb-3">Install</p>
+      <code class="block font-mono text-sm text-spice">git clone https://github.com/somnus0x/kanly.git ~/.claude/skills/kanly</code>
+    </div>
+
+    <div class="mt-12 animate-fade-up delay-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {protocols.map((protocol, i) => {
+          const colors = protocolColors[protocol.data.slug] || { text: 'text-spice', border: 'hover:border-spice/30' };
+          const commands = protocolCommands[protocol.data.slug] || [];
+          return (
+            <a
+              href={`/kanly/${protocol.data.slug}`}
+              class={`block no-underline bg-surface border border-border rounded-xl p-7 hover:border-border-hover ${colors.border} transition-colors`}
+            >
+              <h3 class={`font-display text-xl ${colors.text} mb-2`}>{protocol.data.title}</h3>
+              <p class="text-dim mb-3">{protocol.data.description}</p>
+              {commands.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {commands.map((cmd) => (
+                    <span class="font-mono text-xs bg-surface-2 text-faint rounded px-2 py-0.5">{cmd}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          );
+        })}
       </div>
     </div>
   </div>

@@ -16,16 +16,16 @@ const { Content } = await render(protocol);
 
 <Layout title={`kanly / ${protocol.data.title}`} description={protocol.data.description}>
   <div class="space-y-6">
-    <div class="text-sm text-muted mb-4">
-      <a href="/kanly" class="hover:text-accent">kanly</a> / {protocol.data.slug}
+    <div class="font-mono text-xs text-faint mb-4">
+      <a href="/kanly" class="text-spice hover:underline">kanly</a> <span class="text-faint">/</span> {protocol.data.slug}
     </div>
 
     <article class="max-w-none">
       <Content />
     </article>
 
-    <div class="mt-12 pt-6 border-t border-surface">
-      <a href="/kanly" class="text-accent hover:underline">← back to protocols</a>
+    <div class="mt-12 pt-6 border-t border-border">
+      <a href="/kanly" class="text-spice hover:underline">← back to protocols</a>
     </div>
   </div>
 </Layout>
