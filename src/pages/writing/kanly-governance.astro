@@ -11,30 +11,35 @@ import Layout from '../../layouts/Layout.astro';
     <article class="space-y-6">
       <h1 class="font-display text-4xl font-normal animate-fade-up delay-1">kanly governance</h1>
 
-      <div class="text-lg leading-loose space-y-4 animate-fade-up delay-2">
-        <p><strong>1/</strong> i run multiple claude code sessions in parallel across repos. the hard part isn't getting code out. it's keeping the sessions from lying to each other.</p>
+      <div class="text-lg leading-loose space-y-6 animate-fade-up delay-2">
+        <p>i run multiple claude code sessions in parallel across repos. the hard part isn't getting code out. it's keeping the sessions from lying to each other.</p>
 
-        <p><strong>2/</strong> ai doesn't forget things. it just never knew them. one session changes a contract interface. the other session keeps building against the old one. nothing errors. everything's wrong.</p>
+        <p>ai doesn't forget things. it just never knew them. one session changes a contract interface. the other session keeps building against the old one. nothing errors. everything's wrong.</p>
 
-        <p><strong>3/</strong> so i built a governance layer. six protocols. plain markdown files. no dependencies. no database. just structure that travels between repos.</p>
+        <p>so i built a governance layer. six protocols. plain markdown files. no dependencies. no database. just structure that travels between repos.</p>
 
-        <p><strong>4/</strong> the core idea: most irreversible mistakes don't look irreversible when you're making them. they look like normal commits. the system's job is to make you pause before the ones you can't undo.</p>
+        <p>the core idea: most irreversible mistakes don't look irreversible when you're making them. they look like normal commits. the system's job is to make you pause before the ones you can't undo.</p>
 
-        <p><strong>5/</strong> changes get classified by reversibility. trivial — move fast. costly to reverse — note it. hard to reverse — stop. list what breaks. get explicit approval. no autopilot through the danger zone.</p>
+        <p>changes get classified by reversibility. trivial — move fast. costly to reverse — note it. hard to reverse — stop. list what breaks. get explicit approval. no autopilot through the danger zone.</p>
 
-        <p><strong>6/</strong> when one repo's changes affect another, a dispatch gets written. not a notification. a structured note with context. the receiving session checks before it starts. shared memory without shared state.</p>
+        <p>when one repo's changes affect another, a dispatch gets written. not a notification. a structured note with context. the receiving session checks before it starts. shared memory without shared state.</p>
 
-        <p><strong>7/</strong> there's a dissent protocol. if a change increases coupling, hardens assumptions, or quietly expands scope — it gets flagged. not blocked. surfaced. the human still decides. but the decision becomes conscious.</p>
+        <p>there's a dissent protocol. if a change increases coupling, hardens assumptions, or quietly expands scope — it gets flagged. not blocked. surfaced. the human still decides. but the decision becomes conscious.</p>
 
-        <p><strong>8/</strong> called it kanly. vendetta rules from dune. formal structure for conflict between parties that share a universe but operate independently. felt right.</p>
+        <p>called it kanly. vendetta rules from dune. formal structure for conflict between parties that share a universe but operate independently. felt right.</p>
 
-        <p><strong>9/</strong> it's not a framework. it's a set of conventions. works because markdown is readable without tooling. useful even if you stop using ai tomorrow.</p>
+        <p>it's not a framework. it's a set of conventions. works because markdown is readable without tooling. useful even if you stop using ai tomorrow.</p>
 
-        <p><strong>10/</strong> the insight underneath all of it: ai makes you faster at building the wrong thing too. governance isn't overhead. it's the thing that keeps speed from becoming expensive.</p>
+        <p>the insight underneath all of it: ai makes you faster at building the wrong thing too. governance isn't overhead. it's the thing that keeps speed from becoming expensive.</p>
       </div>
 
-      <div class="mt-12 pt-6 border-t border-border">
-        <a href="/kanly" class="text-spice hover:underline">→ view the protocols</a>
+      <div class="mt-12 pt-6 border-t border-border space-y-4">
+        <div>
+          <a href="https://github.com/somnus0x/kanly" target="_blank" rel="noopener" class="text-spice hover:underline">→ github.com/somnus0x/kanly</a>
+        </div>
+        <div>
+          <a href="/kanly" class="text-spice hover:underline">→ view the protocols</a>
+        </div>
       </div>
     </article>
 
