@@ -9,42 +9,116 @@ import Layout from '../../layouts/Layout.astro';
     </div>
 
     <article class="space-y-6">
-      <h1 class="font-display text-4xl font-normal animate-fade-up delay-1">kanly governance</h1>
+      <h1 class="font-display text-4xl font-normal animate-fade-up">kanly governance</h1>
 
-      <div class="text-lg leading-loose space-y-6 animate-fade-up delay-2">
-        <p>i run multiple claude code sessions in parallel across repos. the hard part isn't getting code out. it's keeping the sessions from lying to each other.</p>
+      <div class="space-y-10 mt-10 animate-fade-up delay-1">
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">1/</span>
+          <p class="mt-2">i run multiple claude code sessions in parallel across repos</p>
+          <p>the hard part isn't getting code out</p>
+          <p>it's keeping the sessions from lying to each other</p>
+        </div>
 
-        <p>ai doesn't forget things. it just never knew them. one session changes a contract interface. the other session keeps building against the old one. nothing errors. everything's wrong.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">2/</span>
+          <p class="mt-2">ai doesn't forget things</p>
+          <p>it just never knew them</p>
+          <p>one session changes a contract interface</p>
+          <p>the other session keeps building against the old one</p>
+          <p class="text-dim mt-3">nothing errors. everything's wrong.</p>
+        </div>
 
-        <p>so i built a governance layer. six protocols. plain markdown files. no dependencies. no database. just structure that travels between repos.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">3/</span>
+          <p class="mt-2">so i built a governance layer</p>
+          <p>six protocols. plain markdown files.</p>
+          <p>no dependencies. no database.</p>
+          <p class="text-dim">just structure that travels between repos</p>
+        </div>
 
-        <p>the core idea: most irreversible mistakes don't look irreversible when you're making them. they look like normal commits. the system's job is to make you pause before the ones you can't undo.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">4/</span>
+          <p class="mt-2">the core idea:</p>
+          <p>most irreversible mistakes don't look irreversible when you're making them</p>
+          <p>they look like normal commits</p>
+          <p class="mt-3 text-dim">the system's job is to make you pause before the ones you can't undo</p>
+        </div>
 
-        <p>changes get classified by reversibility. trivial — move fast. costly to reverse — note it. hard to reverse — stop. list what breaks. get explicit approval. no autopilot through the danger zone.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">5/</span>
+          <p class="mt-2">changes get classified by reversibility</p>
+          <p class="text-dim">trivial — move fast</p>
+          <p class="text-dim">costly to reverse — note it</p>
+          <p class="text-dim">hard to reverse — stop. list what breaks. get explicit approval.</p>
+          <p class="mt-3">no autopilot through the danger zone</p>
+        </div>
 
-        <p>when one repo's changes affect another, a dispatch gets written. not a notification. a structured note with context. the receiving session checks before it starts. shared memory without shared state.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">6/</span>
+          <p class="mt-2">when one repo's changes affect another, a dispatch gets written</p>
+          <p>not a notification. a structured note with context.</p>
+          <p>the receiving session checks before it starts</p>
+          <p class="text-dim mt-3">shared memory without shared state</p>
+        </div>
 
-        <p>there's a dissent protocol. if a change increases coupling, hardens assumptions, or quietly expands scope — it gets flagged. not blocked. surfaced. the human still decides. but the decision becomes conscious.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">7/</span>
+          <p class="mt-2">there's a dissent protocol</p>
+          <p>if a change increases coupling, hardens assumptions, or quietly expands scope — it gets flagged</p>
+          <p class="mt-3">not blocked. surfaced.</p>
+          <p class="text-dim">the human still decides. but the decision becomes conscious.</p>
+        </div>
 
-        <p>called it kanly. vendetta rules from dune. formal structure for conflict between parties that share a universe but operate independently. felt right.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">8/</span>
+          <p class="mt-2">called it kanly</p>
+          <p>vendetta rules from dune</p>
+          <p>formal structure for conflict between parties that share a universe but operate independently</p>
+          <p class="text-dim mt-3">felt right</p>
+        </div>
 
-        <p>it's not a framework. it's a set of conventions. works because markdown is readable without tooling. useful even if you stop using ai tomorrow.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">9/</span>
+          <p class="mt-2">it's not a framework</p>
+          <p>it's a set of conventions</p>
+          <p>works because markdown is readable without tooling</p>
+          <p class="text-dim mt-3">useful even if you stop using ai tomorrow</p>
+        </div>
 
-        <p>the insight underneath all of it: ai makes you faster at building the wrong thing too. governance isn't overhead. it's the thing that keeps speed from becoming expensive.</p>
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">10/</span>
+          <p class="mt-2">the insight underneath all of it:</p>
+          <p>ai makes you faster at building the wrong thing too</p>
+          <p>governance isn't overhead</p>
+          <p class="text-dim mt-3">it's the thing that keeps speed from becoming expensive</p>
+        </div>
       </div>
 
-      <div class="mt-12 pt-6 border-t border-border space-y-4">
-        <div>
-          <a href="https://github.com/somnus0x/kanly" target="_blank" rel="noopener" class="text-spice hover:underline">→ github.com/somnus0x/kanly</a>
-        </div>
-        <div>
-          <a href="/kanly" class="text-spice hover:underline">→ view the protocols</a>
-        </div>
-      </div>
     </article>
 
-    <div class="mt-12 pt-6 border-t border-border animate-fade-up delay-3">
+    <div class="mt-16 pt-6 border-t border-border space-y-4">
+      <div>
+        <a href="https://github.com/somnus0x/kanly" target="_blank" rel="noopener" class="text-spice hover:underline">→ github.com/somnus0x/kanly</a>
+      </div>
+      <div>
+        <a href="/kanly" class="text-spice hover:underline">→ view the protocols</a>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-border">
       <a href="/writing" class="text-spice hover:underline">← back to writing</a>
     </div>
   </div>
 </Layout>
+
+<style>
+  .thread-post {
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(212, 168, 100, 0.12);
+  }
+
+  .thread-post p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+</style>
