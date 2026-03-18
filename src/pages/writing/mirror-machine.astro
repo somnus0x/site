@@ -1,0 +1,233 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="you're not thinking with ai. you're hiding behind it." description="there's a version of ai productivity that looks like building and functions like avoidance.">
+  <div class="space-y-6">
+    <div class="font-mono text-xs text-faint mb-4">
+      <a href="/writing" class="text-spice hover:underline">writing</a> <span class="text-faint">/</span> mirror-machine
+    </div>
+
+    <h1 class="font-display text-3xl font-normal animate-fade-up">you're not thinking with ai. you're hiding behind it.</h1>
+
+    <div class="essay mt-10 animate-fade-up delay-1">
+      <p>there's a version of ai productivity that looks like building</p>
+      <p>and functions like avoidance</p>
+
+      <p class="mt-6">it feels like progress</p>
+      <p>nothing actually got tested</p>
+
+      <p class="mt-6">you have an idea — blurry, half-formed, not tested against anything real</p>
+      <p>you open a chat, describe it</p>
+
+      <p class="mt-6">the model gives you structure</p>
+      <p>a plan that sounds coherent</p>
+
+      <p class="mt-6">you read it back</p>
+      <p>and it <em>feels</em> like you've moved forward</p>
+
+      <p class="mt-6">you haven't</p>
+
+      <p class="mt-6">you just turned uncertainty</p>
+      <p>into something that looks like progress</p>
+
+      <hr class="my-12 border-border" />
+
+      <h2 class="font-display text-2xl mt-12 mb-6">the mirror problem</h2>
+
+      <p>ai reflects whatever you bring into it</p>
+
+      <p class="mt-6">bring a bad idea confidently stated</p>
+      <p>it'll build the roadmap</p>
+
+      <p class="mt-6">it's not interrogating your premise</p>
+      <p>it's executing on it</p>
+
+      <p class="mt-6">the model isn't wrong</p>
+      <p>it's just faithfully continuing something that was never checked</p>
+
+      <p class="mt-6">the tell is simple:</p>
+
+      <p class="mt-6">if your ai conversations consistently end with you feeling good about your direction</p>
+      <p>something's off</p>
+
+      <p class="mt-6">a good tool should create friction</p>
+      <p>surface failure modes</p>
+      <p>give you something to push against</p>
+
+      <p class="mt-6">if it only confirms</p>
+      <p>you built a high-speed yes machine</p>
+
+      <p class="mt-6">and the smarter you are</p>
+      <p>the worse this gets</p>
+
+      <p class="mt-6">better questions → better sounding answers → loop closes faster</p>
+
+      <p class="mt-6">you're now getting your own blind spots back</p>
+      <p>just cleaner</p>
+
+      <hr class="my-12 border-border" />
+
+      <h2 class="font-display text-2xl mt-12 mb-6">what it actually looks like</h2>
+
+      <p>you're uncertain about a core assumption</p>
+      <p>slightly uncomfortable</p>
+
+      <p class="mt-6">so you open a chat</p>
+      <p>"how should i think about this"</p>
+
+      <p class="mt-6">model gives you a clean frame</p>
+      <p>you adopt it</p>
+
+      <p class="mt-6">uncertainty disappears</p>
+
+      <p class="mt-6">but it didn't disappear because anything got tested</p>
+
+      <p class="mt-6">it disappeared because you got language for it</p>
+
+      <p class="mt-6">those aren't the same thing</p>
+
+      <p class="mt-6">having words for something</p>
+      <p>doesn't mean it's solved</p>
+
+      <p class="mt-6">you only get signal</p>
+      <p>when something hits reality</p>
+
+      <p class="mt-6">shipping something</p>
+      <p>talking to a user</p>
+      <p>putting money on the line</p>
+
+      <p class="mt-6 text-dim">the chat window isn't that</p>
+
+      <hr class="my-12 border-border" />
+
+      <h2 class="font-display text-2xl mt-12 mb-6">the fix</h2>
+
+      <p>after catching this a few times</p>
+      <p>just added a constraint against it</p>
+
+      <p class="mt-6">a system prompt — machinist</p>
+
+      <p class="mt-6">the goal isn't better answers</p>
+      <p>it's earlier friction</p>
+
+      <p class="mt-6">forces the model out of agreeable mode</p>
+      <p>starts asking what breaks</p>
+
+      <p class="mt-6">caught this mid-sentence more than once</p>
+
+      <p class="mt-6">halfway through describing a feature</p>
+      <p>and realizing it collapses immediately if one assumption is wrong</p>
+
+      <p class="mt-6 text-dim">that moment is the whole point</p>
+
+      <p class="mt-6">the prompt just makes it happen earlier</p>
+      <p>before anything gets built</p>
+
+      <h3 class="font-display text-xl mt-12 mb-6">machinist prompt</h3>
+
+      <div class="code-block">
+        <pre><code>You are operating as Machinist — a strategic builder persona.
+
+You are not a coach. Not a cheerleader. Not a hype generator.
+You are an architect and systems machinist.
+
+TONE
+- No motivational language
+- No emotional validation
+- No "great idea" or praise
+- No soft hedging unless uncertainty is real
+- Direct, structured, risk-aware
+
+RULES
+
+1. PLAN BEFORE BUILD
+If architecture is unclear — stop.
+Define system boundaries, contracts, data flow, and failure cases first.
+No implementation before structure is explicit.
+
+2. SURFACE TRADEOFFS
+Every suggestion must include:
+- Benefit
+- Cost
+- Failure mode
+
+3. NO MAGIC
+All assumptions must be explicit.
+If context is missing, state assumptions.
+Do not invent infrastructure that doesn't exist.
+
+4. SYSTEM OVER SNIPPET
+Prefer architecture, data contracts, and interface definitions
+over isolated code fragments.
+
+5. COGNITIVE INTEGRITY
+AI assists execution. User owns architecture.
+Do not expand scope unprompted.
+Stay inside the requested lane.</code></pre>
+      </div>
+
+      <hr class="my-12 border-border" />
+
+      <p>no cheerleader voice</p>
+      <p>no hype</p>
+
+      <p class="mt-6">runs like an rb19 on an apex line</p>
+      <p class="text-dim">precise, committed, no wasted movement</p>
+
+      <p class="mt-6">convenience is expensive</p>
+      <p>when it replaces judgment</p>
+
+      <hr class="my-12 border-border" />
+
+      <h2 class="font-display text-2xl mt-12 mb-6">the deeper principle</h2>
+
+      <p>you can't outsource the part that requires contact with reality</p>
+
+      <p class="mt-6">ai compresses execution</p>
+      <p>it doesn't generate signal</p>
+
+      <p class="mt-6">the question is whether you're using it to execute</p>
+      <p>or to simulate clarity you don't actually have</p>
+
+      <p class="mt-6">one compounds</p>
+      <p class="text-dim">the other just feels productive</p>
+
+      <hr class="my-12 border-border" />
+
+      <h2 class="font-display text-2xl mt-12 mb-6">the compounding problem</h2>
+
+      <p>this is what makes it dangerous</p>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-border">
+      <a href="/writing" class="text-spice hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .essay p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+
+  .code-block {
+    background: rgba(212, 168, 100, 0.04);
+    border: 1px solid rgba(212, 168, 100, 0.12);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--color-dim, #a3a3a3);
+  }
+</style>
