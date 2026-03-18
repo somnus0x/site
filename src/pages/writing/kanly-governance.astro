@@ -16,21 +16,21 @@ import Layout from '../../layouts/Layout.astro';
           <span class="font-mono text-xs text-faint">1/</span>
           <p class="mt-2">i run multiple claude code sessions in parallel across repos</p>
           <p>the hard part isn't getting code out</p>
-          <p>it's keeping the sessions from lying to each other</p>
+          <p class="text-crimson">it's keeping the sessions from lying to each other</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">2/</span>
           <p class="mt-2">ai doesn't forget things</p>
-          <p>it just never knew them</p>
+          <p>it just <span class="text-spice">never knew them</span></p>
           <p>one session changes a contract interface</p>
           <p>the other session keeps building against the old one</p>
-          <p class="text-dim mt-3">nothing errors. everything's wrong.</p>
+          <p class="text-crimson mt-3">nothing errors. everything's wrong.</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">3/</span>
-          <p class="mt-2">so i built a governance layer</p>
+          <p class="mt-2">so i built a <span class="text-water">governance layer</span></p>
           <p>six protocols. plain markdown files.</p>
           <p>no dependencies. no database.</p>
           <p class="text-dim">just structure that travels between repos</p>
@@ -38,24 +38,24 @@ import Layout from '../../layouts/Layout.astro';
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">4/</span>
-          <p class="mt-2">the core idea:</p>
+          <p class="mt-2 text-gold">the core idea:</p>
           <p>most irreversible mistakes don't look irreversible when you're making them</p>
-          <p>they look like normal commits</p>
-          <p class="mt-3 text-dim">the system's job is to make you pause before the ones you can't undo</p>
+          <p class="text-dim">they look like normal commits</p>
+          <p class="mt-3 text-spice">the system's job is to make you pause before the ones you can't undo</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">5/</span>
-          <p class="mt-2">changes get classified by reversibility</p>
-          <p class="text-dim">trivial — move fast</p>
-          <p class="text-dim">costly to reverse — note it</p>
-          <p class="text-dim">hard to reverse — stop. list what breaks. get explicit approval.</p>
+          <p class="mt-2">changes get classified by <span class="text-water">reversibility</span></p>
+          <p class="text-safe">trivial — move fast</p>
+          <p class="text-gold">costly to reverse — note it</p>
+          <p class="text-crimson">hard to reverse — stop. list what breaks. get explicit approval.</p>
           <p class="mt-3">no autopilot through the danger zone</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">6/</span>
-          <p class="mt-2">when one repo's changes affect another, a dispatch gets written</p>
+          <p class="mt-2">when one repo's changes affect another, a <span class="text-water">dispatch</span> gets written</p>
           <p>not a notification. a structured note with context.</p>
           <p>the receiving session checks before it starts</p>
           <p class="text-dim mt-3">shared memory without shared state</p>
@@ -63,15 +63,15 @@ import Layout from '../../layouts/Layout.astro';
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">7/</span>
-          <p class="mt-2">there's a dissent protocol</p>
+          <p class="mt-2">there's a <span class="text-crimson">dissent protocol</span></p>
           <p>if a change increases coupling, hardens assumptions, or quietly expands scope — it gets flagged</p>
-          <p class="mt-3">not blocked. surfaced.</p>
+          <p class="mt-3 text-spice">not blocked. surfaced.</p>
           <p class="text-dim">the human still decides. but the decision becomes conscious.</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">8/</span>
-          <p class="mt-2">called it kanly</p>
+          <p class="mt-2">called it <span class="text-spice">kanly</span></p>
           <p>vendetta rules from dune</p>
           <p>formal structure for conflict between parties that share a universe but operate independently</p>
           <p class="text-dim mt-3">felt right</p>
@@ -82,15 +82,15 @@ import Layout from '../../layouts/Layout.astro';
           <p class="mt-2">it's not a framework</p>
           <p>it's a set of conventions</p>
           <p>works because markdown is readable without tooling</p>
-          <p class="text-dim mt-3">useful even if you stop using ai tomorrow</p>
+          <p class="text-safe mt-3">useful even if you stop using ai tomorrow</p>
         </div>
 
         <div class="thread-post">
           <span class="font-mono text-xs text-faint">10/</span>
-          <p class="mt-2">the insight underneath all of it:</p>
+          <p class="mt-2 text-gold">the insight underneath all of it:</p>
           <p>ai makes you faster at building the wrong thing too</p>
           <p>governance isn't overhead</p>
-          <p class="text-dim mt-3">it's the thing that keeps speed from becoming expensive</p>
+          <p class="mt-3 text-spice">it's the thing that keeps speed from becoming expensive</p>
         </div>
       </div>
 
