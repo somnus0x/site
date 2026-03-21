@@ -1,5 +1,46 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    title: '[redacted]',
+    description: 'twitter-first crypto betting platform. shipping soon.',
+    date: '2025–present',
+    status: 'active',
+    role: 'pm, full-stack',
+    stack: ['nestjs', 'react', 'solidity', 'firebase'],
+  },
+  {
+    title: 'kanly',
+    description: 'formal vendetta protocols for honest intellectual conflict.',
+    date: '2026',
+    status: 'shipped',
+    link: '/kanly',
+    stack: ['markdown', 'claude code'],
+  },
+  {
+    title: 'knowhere labs',
+    description: 'terra\'s first nft marketplace. $30m trading volume.',
+    date: '2021–2022',
+    status: 'archived',
+    role: 'co-founder, full-stack',
+    stack: ['react', 'rust', 'cosmwasm', 'terra'],
+  },
+  {
+    title: 'tokenomist.ai',
+    description: 'tokenomics analysis platform. clients: coinbase, falconx.',
+    date: '2023–2025',
+    status: 'shipped',
+    role: 'tech lead',
+    stack: ['python', 'react', 'postgresql'],
+  },
+];
+
+const statusColor: Record<string, string> = {
+  active: 'text-safe',
+  shipped: 'text-spice',
+  archived: 'text-faint',
+};
 ---
 
 <Layout title="projects" description="Things I've built" wide>
@@ -7,37 +48,32 @@ import Layout from '../layouts/Layout.astro';
     <h1 class="font-display text-4xl font-normal animate-fade-up">projects</h1>
 
     <div class="space-y-6 mt-10">
-      <div class="border border-border rounded-xl bg-surface p-7 animate-fade-up delay-1">
-        <h2 class="font-display text-xl mb-3">[redacted]</h2>
-        <p class="text-dim mb-4">twitter-first crypto betting platform. shipping soon.</p>
-        <div class="text-faint font-mono text-xs uppercase tracking-wider">
-          <span class="text-text">stack:</span> nestjs, react, solidity, firebase
+      {projects.map((project, i) => (
+        <div class={`border border-border rounded-xl bg-surface p-7 animate-fade-up delay-${i + 1}`}>
+          <div class="flex items-baseline justify-between mb-3">
+            <h2 class="font-display text-xl">
+              {project.link ? (
+                <a href={project.link} class="text-spice hover:underline">{project.title}</a>
+              ) : (
+                project.title
+              )}
+            </h2>
+            <div class="font-mono text-xs text-faint flex items-center gap-3">
+              <span>{project.date}</span>
+              <span class={statusColor[project.status]}>{project.status}</span>
+            </div>
+          </div>
+          <p class="text-dim mb-4">{project.description}</p>
+          {project.role && (
+            <p class="text-faint font-mono text-xs uppercase tracking-wider mb-3">{project.role}</p>
+          )}
+          <div class="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span class="font-mono text-xs bg-surface-2 text-faint rounded px-2 py-0.5">{tech}</span>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <div class="border border-border rounded-xl bg-surface p-7 animate-fade-up delay-2">
-        <h2 class="font-display text-xl mb-3">knowhere labs</h2>
-        <p class="text-dim mb-4">terra's first nft marketplace. $30m trading volume. 2021-2022.</p>
-        <div class="text-faint font-mono text-xs uppercase tracking-wider">
-          <span class="text-text">role:</span> co-founder, full-stack
-        </div>
-      </div>
-
-      <div class="border border-border rounded-xl bg-surface p-7 animate-fade-up delay-3">
-        <h2 class="font-display text-xl mb-3">tokenomist.ai</h2>
-        <p class="text-dim mb-4">tokenomics analysis platform. clients: coinbase, falconx.</p>
-        <div class="text-faint font-mono text-xs uppercase tracking-wider">
-          <span class="text-text">role:</span> tech lead
-        </div>
-      </div>
-
-      <div class="border border-border rounded-xl bg-surface p-7 animate-fade-up delay-4">
-        <h2 class="font-display text-xl mb-3">kanly</h2>
-        <p class="text-dim mb-4">formal vendetta protocols for honest intellectual conflict.</p>
-        <div class="text-sm">
-          <a href="/kanly" class="text-spice hover:underline">→ view protocols</a>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </Layout>

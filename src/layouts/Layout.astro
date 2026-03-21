@@ -18,6 +18,8 @@ const {
 const containerClass = wide ? "max-w-[64rem]" : "max-w-[44rem]";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+const path = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
 ---
 
 <!doctype html>
@@ -47,6 +49,9 @@ const ogImage = new URL(image, Astro.site);
     <meta property="twitter:image" content={ogImage} />
     <meta name="twitter:creator" content="@0xisagiboi" />
 
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="isagi — writing" href="/rss.xml" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -59,15 +64,15 @@ const ogImage = new URL(image, Astro.site);
   </head>
   <body class="min-h-screen flex flex-col items-center">
     <nav class="w-full px-8 sm:px-12 md:px-20 pt-10 md:pt-14 pb-16 md:pb-20 font-mono text-sm tracking-wide text-center">
-      <a href="/" class="text-spice hover:underline">isagi</a>
+      <a href="/" class={`hover:underline ${isActive('/') ? 'text-spice' : 'text-dim hover:text-spice'}`}>isagi</a>
       <span class="text-faint mx-4">/</span>
-      <a href="/kanly" class="text-dim hover:text-spice hover:underline">kanly</a>
+      <a href="/kanly" class={`hover:underline ${isActive('/kanly') ? 'text-spice' : 'text-dim hover:text-spice'}`}>kanly</a>
       <span class="text-faint mx-4">/</span>
-      <a href="/projects" class="text-dim hover:text-spice hover:underline">projects</a>
+      <a href="/projects" class={`hover:underline ${isActive('/projects') ? 'text-spice' : 'text-dim hover:text-spice'}`}>projects</a>
       <span class="text-faint mx-4">/</span>
-      <a href="/writing" class="text-dim hover:text-spice hover:underline">writing</a>
+      <a href="/writing" class={`hover:underline ${isActive('/writing') ? 'text-spice' : 'text-dim hover:text-spice'}`}>writing</a>
       <span class="text-faint mx-4">/</span>
-      <a href="/reading" class="text-dim hover:text-spice hover:underline">reading</a>
+      <a href="/reading" class={`hover:underline ${isActive('/reading') ? 'text-spice' : 'text-dim hover:text-spice'}`}>reading</a>
     </nav>
 
     <div class={`${containerClass} mx-auto w-full px-8 sm:px-12 md:px-20 lg:px-24 flex-1`}>
