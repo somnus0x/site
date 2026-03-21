@@ -2,70 +2,82 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="writing" description="Essays and threads">
+<Layout title="writing" description="Essays, threads, and raw thoughts">
   <div class="space-y-8">
     <h1 class="font-display text-4xl font-normal animate-fade-up">writing</h1>
 
-    <div class="space-y-10 mt-10 animate-fade-up delay-1">
-      <a href="/writing/remotion-one-prompt" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
-        <h2 class="font-display text-xl mb-2">one prompt, one video</h2>
-        <p class="text-dim">remotion turns video into code. claude code writes the code. under 60 seconds.</p>
-      </a>
+    <div class="animate-fade-up delay-1">
+      <h2 class="font-mono text-sm text-spice mb-6">raw</h2>
+      <p class="text-dim text-sm mb-8">unpolished. written by hand. rough edges stay.</p>
 
-      <a href="/writing/judgement-per-hour" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
-        <h2 class="font-display text-xl mb-2">judgement per hour</h2>
-        <p class="text-dim">wrong metric is lines of code. the one that compounds is judgement calls.</p>
-      </a>
+      <div class="space-y-10">
+        <a href="/writing/remotion-one-prompt" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
+          <h2 class="font-display text-xl mb-2">one prompt, one video</h2>
+          <p class="text-dim">heard about remotion. never opened the docs. wrote one paragraph, got a launch video back in 60 seconds.</p>
+        </a>
+      </div>
+    </div>
 
-      <a href="/writing/build-your-own-arsenal" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-19</div>
-        <h2 class="font-display text-xl mb-2">build your own arsenal</h2>
-        <p class="text-dim">best skills don't come from browsing packs. they come from the step that keeps repeating because skipping it broke something.</p>
-      </a>
+    <div class="animate-fade-up delay-2 mt-16">
+      <h2 class="font-mono text-sm text-gold mb-6">essays</h2>
+      <p class="text-dim text-sm mb-8">ai-collaborative. polished. the thinking voice.</p>
 
-      <a href="/writing/ai-yes-machine" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-18</div>
-        <h2 class="font-display text-xl mb-2">you're not thinking with ai. you're hiding behind it.</h2>
-        <p class="text-dim">there's a version of ai productivity that looks like building and functions like avoidance.</p>
-      </a>
+      <div class="space-y-10">
+        <a href="/writing/judgement-per-hour" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
+          <h2 class="font-display text-xl mb-2">judgement per hour</h2>
+          <p class="text-dim">wrong metric is lines of code. the one that compounds is judgement calls.</p>
+        </a>
 
-      <a href="/writing/baptism-by-ice" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-17</div>
-        <h2 class="font-display text-xl mb-2">baptism by ice</h2>
-        <p class="text-dim">walk long enough and things separate on their own. what matters. what doesn't.</p>
-      </a>
+        <a href="/writing/build-your-own-arsenal" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-19</div>
+          <h2 class="font-display text-xl mb-2">build your own arsenal</h2>
+          <p class="text-dim">best skills don't come from browsing packs. they come from the step that keeps repeating because skipping it broke something.</p>
+        </a>
 
-      <a href="/writing/market-timing" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-13</div>
-        <h2 class="font-display text-xl mb-2">market timing</h2>
-        <p class="text-dim">co-founded knowhere. $30m volume. we were tracking to #1. window closed. market timing beats execution every time.</p>
-      </a>
+        <a href="/writing/ai-yes-machine" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-18</div>
+          <h2 class="font-display text-xl mb-2">you're not thinking with ai. you're hiding behind it.</h2>
+          <p class="text-dim">there's a version of ai productivity that looks like building and functions like avoidance.</p>
+        </a>
 
-      <a href="/writing/new-paradigm" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-12</div>
-        <h2 class="font-display text-xl mb-2">new paradigm</h2>
-        <p class="text-dim">designer codes. developer codes. biz guy codes. the tool just works for all three now.</p>
-      </a>
+        <a href="/writing/baptism-by-ice" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-17</div>
+          <h2 class="font-display text-xl mb-2">baptism by ice</h2>
+          <p class="text-dim">walk long enough and things separate on their own. what matters. what doesn't.</p>
+        </a>
 
-      <a href="/writing/kanly-governance" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
-        <h2 class="font-display text-xl mb-2">kanly governance</h2>
-        <p class="text-dim">ai makes you faster at building the wrong thing too. governance isn't overhead — it's what keeps speed from becoming expensive.</p>
-      </a>
+        <a href="/writing/market-timing" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-13</div>
+          <h2 class="font-display text-xl mb-2">market timing</h2>
+          <p class="text-dim">co-founded knowhere. $30m volume. we were tracking to #1. window closed. market timing beats execution every time.</p>
+        </a>
 
-      <a href="/writing/openclaw-to-claude-code" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
-        <h2 class="font-display text-xl mb-2">openclaw → claude code</h2>
-        <p class="text-dim">the middleware was the problem the entire time.</p>
-      </a>
+        <a href="/writing/new-paradigm" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-12</div>
+          <h2 class="font-display text-xl mb-2">new paradigm</h2>
+          <p class="text-dim">designer codes. developer codes. biz guy codes. the tool just works for all three now.</p>
+        </a>
 
-      <a href="/writing/ai-coding" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-08</div>
-        <h2 class="font-display text-xl mb-2">ai in coding</h2>
-        <p class="text-dim">not chasing speed — trying to see where it actually changes outcomes. a 10-post thread.</p>
-      </a>
+        <a href="/writing/kanly-governance" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
+          <h2 class="font-display text-xl mb-2">kanly governance</h2>
+          <p class="text-dim">ai makes you faster at building the wrong thing too. governance isn't overhead — it's what keeps speed from becoming expensive.</p>
+        </a>
+
+        <a href="/writing/openclaw-to-claude-code" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
+          <h2 class="font-display text-xl mb-2">openclaw → claude code</h2>
+          <p class="text-dim">the middleware was the problem the entire time.</p>
+        </a>
+
+        <a href="/writing/ai-coding" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover transition-colors">
+          <div class="font-mono text-xs text-faint mb-3">2026-03-08</div>
+          <h2 class="font-display text-xl mb-2">ai in coding</h2>
+          <p class="text-dim">not chasing speed — trying to see where it actually changes outcomes. a 10-post thread.</p>
+        </a>
+      </div>
     </div>
   </div>
 </Layout>
