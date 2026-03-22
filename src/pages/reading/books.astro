@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="books for programmers" description="A reading list I compiled for junior devs. Technical foundations and the non-technical stuff nobody teaches you.">
+  <div class="space-y-8">
+    <h1 class="font-display text-4xl font-normal animate-fade-up">books for programmers</h1>
+    <p class="text-dim animate-fade-up delay-1">compiled this for junior devs I've worked with. the technical books build your foundation. the non-technical ones build everything else.</p>
+
+    <div class="animate-fade-up delay-2 mt-12">
+      <h2 class="font-mono text-sm text-spice mb-6">technical (IC track)</h2>
+      <p class="text-faint text-sm mb-8">heavily focused on backend since frontend patterns are locked by framework.</p>
+
+      <div class="space-y-6">
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">Clean Code</h3>
+          <p class="text-dim text-sm">Robert C. Martin — the handbook everyone references and half actually read. naming, functions, error handling. the basics that separate readable code from clever code.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">Clean Architecture</h3>
+          <p class="text-dim text-sm">Robert C. Martin — boundaries, dependency rules, the separation that lets you swap frameworks without rewriting everything. read this before your first major refactor.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">The Pragmatic Programmer</h3>
+          <p class="text-dim text-sm">Hunt & Thomas — the meta-book. not about any language or framework. about how to think like a programmer. DRY, orthogonality, tracer bullets.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">Design Patterns</h3>
+          <p class="text-dim text-sm"><a href="https://www.youtube.com/watch?v=v9ejT8FO-7I&list=PLrhzvIcii6GNjpARdnO4ueTUAVR9eMBpc" target="_blank" rel="noopener" class="text-spice hover:underline">playlist</a> — don't read the GoF book cover to cover. watch the playlist, implement the ones you need, learn the rest when you hit them in the wild.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">Domain-Driven Design Distilled</h3>
+          <p class="text-dim text-sm">Vaughn Vernon — the compressed version. bounded contexts, aggregates, ubiquitous language. the thinking tool for systems that are bigger than one person's head.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="animate-fade-up delay-3 mt-16">
+      <h2 class="font-mono text-sm text-gold mb-6">non-technical</h2>
+      <p class="text-faint text-sm mb-8">for communicating thought. useful during work and interviews.</p>
+
+      <div class="space-y-6">
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">The Mythical Man-Month</h3>
+          <p class="text-dim text-sm">Fred Brooks — written in 1975, still true. adding people to a late project makes it later. the communication overhead chapter alone is worth it.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">The Clean Coder</h3>
+          <p class="text-dim text-sm">Robert C. Martin — not about code. about professionalism. saying no, estimating honestly, handling pressure. the book about being a developer, not writing code.</p>
+        </div>
+
+        <div class="border-l-2 border-border pl-5">
+          <h3 class="font-display text-lg text-text">Don't Make Me Think</h3>
+          <p class="text-dim text-sm">Steve Krug — UX for people who don't do UX. every programmer should read this. your users aren't reading your interface — they're scanning it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="animate-fade-up delay-4 mt-16">
+      <h2 class="font-mono text-sm text-water mb-6">more</h2>
+      <div class="space-y-3">
+        <p class="text-dim text-sm"><a href="https://www.programmingbooks.dev/" target="_blank" rel="noopener" class="text-spice hover:underline">programmingbooks.dev</a> — crowdsourced list if you want to go deeper.</p>
+      </div>
+    </div>
+  </div>
+</Layout>
