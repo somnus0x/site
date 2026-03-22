@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const changedHowIOperate = [
+  {
+    title: "The Goal",
+    author: "Eliyahu Goldratt",
+    cover: "https://covers.openlibrary.org/b/isbn/9780884271956-M.jpg",
+    desc: "Theory of Constraints. Find the bottleneck, exploit it, subordinate everything else."
+  },
+  {
+    title: "High Output Management",
+    author: "Andy Grove",
+    cover: "https://covers.openlibrary.org/b/isbn/9780679762881-M.jpg",
+    desc: "Output-oriented thinking, managerial leverage, focus on results not activity."
+  },
+  {
+    title: "Crossing the Chasm",
+    author: "Geoffrey Moore",
+    cover: "https://covers.openlibrary.org/b/isbn/9780062292988-M.jpg",
+    desc: "Market adoption isn't linear. Different buyers need different approaches."
+  },
+];
+
+const systemsStrategy = [
+  {
+    title: "Thinking in Systems",
+    author: "Donella Meadows",
+    cover: "https://covers.openlibrary.org/b/isbn/9781603580557-M.jpg",
+    desc: "System archetypes, leverage points, feedback loops. Read this back-to-back with The Goal."
+  },
+  {
+    title: "Good Strategy Bad Strategy",
+    author: "Richard Rumelt",
+    cover: "https://covers.openlibrary.org/b/isbn/9780307886231-M.jpg",
+    desc: "Vision ≠ strategy. Diagnosis → Guiding Policy → Coherent Action."
+  },
+  {
+    title: "Technology Strategy Patterns",
+    author: "Eben Hewitt",
+    cover: "",
+    desc: "Enterprise architecture patterns and technical portfolio management at CTO level."
+  },
+  {
+    title: "The Strategy Paradox",
+    author: "Michael Raynor",
+    cover: "https://covers.openlibrary.org/b/isbn/9780385516228-M.jpg",
+    desc: "Strategic commitment vs flexibility under uncertainty."
+  },
+  {
+    title: "Antifragile",
+    author: "Nassim Nicholas Taleb",
+    cover: "https://covers.openlibrary.org/b/isbn/9780812979688-M.jpg",
+    desc: "Systems that gain from disorder."
+  },
+  {
+    title: "Inadequate Equilibria",
+    author: "Eliezer Yudkowsky",
+    cover: "https://covers.openlibrary.org/b/isbn/9781939311221-M.jpg",
+    desc: "Why institutions fail and when you can trust your own judgment over consensus."
+  },
+  {
+    title: "Finite and Infinite Games",
+    author: "James Carse",
+    cover: "https://covers.openlibrary.org/b/isbn/9781476731711-M.jpg",
+    desc: "The meta-framework underneath all strategy."
+  },
+  {
+    title: "Only the Paranoid Survive",
+    author: "Andy Grove",
+    cover: "https://covers.openlibrary.org/b/isbn/9780385483827-M.jpg",
+    desc: "Strategic inflection points and when everything changes."
+  },
+  {
+    title: "Seeing Like a State",
+    author: "James Scott",
+    cover: "https://covers.openlibrary.org/b/isbn/9780300078152-M.jpg",
+    desc: "Why top-down planning fails. Local knowledge vs imposed order."
+  },
+  {
+    title: "Innovator's Dilemma",
+    author: "Clayton Christensen",
+    cover: "https://covers.openlibrary.org/b/isbn/9780062060242-M.jpg",
+    desc: "Why incumbents lose to worse products."
+  },
+];
+
+const ctoLeadership = [
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    cover: "https://covers.openlibrary.org/b/isbn/9781449373320-M.jpg",
+    desc: "The technical depth book. Distributed systems, storage, processing."
+  },
+  {
+    title: "Accelerate",
+    author: "Nicole Forsgren",
+    cover: "https://covers.openlibrary.org/b/isbn/9781942788331-M.jpg",
+    desc: "Data-driven approach to high-performing engineering organizations."
+  },
+  {
+    title: "Software Engineering at Google",
+    author: "Titus Winters",
+    cover: "https://covers.openlibrary.org/b/isbn/9781492082798-M.jpg",
+    desc: "Engineering at scale — processes, tooling, culture."
+  },
+  {
+    title: "Staff Engineer",
+    author: "Will Larson",
+    cover: "https://covers.openlibrary.org/b/isbn/9781736417911-M.jpg",
+    desc: "Navigating the technical leadership track."
+  },
+  {
+    title: "An Elegant Puzzle",
+    author: "Will Larson",
+    cover: "https://covers.openlibrary.org/b/isbn/9781732265189-M.jpg",
+    desc: "Systems of engineering management. Best for small-to-mid teams."
+  },
+  {
+    title: "The Art of Leadership",
+    author: "Michael Lopp",
+    cover: "https://covers.openlibrary.org/b/isbn/9781492045694-M.jpg",
+    desc: "Executive-level leadership challenges."
+  },
+  {
+    title: "The Art of Scalability",
+    author: "Martin Abbott & Michael Fisher",
+    cover: "https://covers.openlibrary.org/b/isbn/9780134032801-M.jpg",
+    desc: "Organizational scaling and technical risk management."
+  },
+  {
+    title: "The First 90 Days",
+    author: "Michael Watkins",
+    cover: "https://covers.openlibrary.org/b/isbn/9781422188613-M.jpg",
+    desc: "Strategic onboarding for executive transitions."
+  },
+  {
+    title: "Inspired",
+    author: "Marty Cagan",
+    cover: "https://covers.openlibrary.org/b/isbn/9781119387503-M.jpg",
+    desc: "Product development from a strategic lens."
+  },
+  {
+    title: "The Tech Executive Operating System",
+    author: "Aviv Ben-Yosef",
+    cover: "https://covers.openlibrary.org/b/isbn/9798986532417-M.jpg",
+    desc: "Technical leadership at scale, investment prioritization."
+  },
+];
+
+const leadershipExecution = [
+  {
+    title: "Scaling People",
+    author: "Claire Hughes Johnson",
+    cover: "",
+    desc: "Operational excellence for growing teams."
+  },
+  {
+    title: "The Making of a Manager",
+    author: "Julie Zhuo",
+    cover: "https://covers.openlibrary.org/b/isbn/9780735219564-M.jpg",
+    desc: "Leading small technical teams."
+  },
+  {
+    title: "Radical Candor",
+    author: "Kim Scott",
+    cover: "https://covers.openlibrary.org/b/isbn/9781250235374-M.jpg",
+    desc: "Feedback culture without the politics."
+  },
+  {
+    title: "The Manager's Path",
+    author: "Camille Fournier",
+    cover: "https://covers.openlibrary.org/b/isbn/9781491973899-M.jpg",
+    desc: "Engineering management career progression."
+  },
+  {
+    title: "Unreasonable Hospitality",
+    author: "Will Guidara",
+    cover: "https://covers.openlibrary.org/b/isbn/9780593418574-M.jpg",
+    desc: "Building culture that people remember."
+  },
+  {
+    title: "Obviously Awesome",
+    author: "April Dunford",
+    cover: "https://covers.openlibrary.org/b/isbn/9781999023003-M.jpg",
+    desc: "Positioning done right."
+  },
+];
+
+const businessStartups = [
+  {
+    title: "Zero to One",
+    author: "Peter Thiel",
+    cover: "https://covers.openlibrary.org/b/isbn/9780804139298-M.jpg",
+    desc: "Contrarian thinking and monopoly strategy."
+  },
+  {
+    title: "The Hard Thing About Hard Things",
+    author: "Ben Horowitz",
+    cover: "https://covers.openlibrary.org/b/isbn/9780062273208-M.jpg",
+    desc: "No-bullshit founder reality."
+  },
+  {
+    title: "The Lean Startup",
+    author: "Eric Ries",
+    cover: "https://covers.openlibrary.org/b/isbn/9780307887894-M.jpg",
+    desc: "Build-measure-learn. The baseline."
+  },
+  {
+    title: "The Outsiders",
+    author: "William Thorndike",
+    cover: "https://covers.openlibrary.org/b/isbn/9781422162675-M.jpg",
+    desc: "Unconventional CEOs and capital allocation."
+  },
+  {
+    title: "The Mom Test",
+    author: "Rob Fitzpatrick",
+    cover: "https://covers.openlibrary.org/b/isbn/9781492180746-M.jpg",
+    desc: "How to talk to customers without lying to yourself."
+  },
+  {
+    title: "Principles",
+    author: "Ray Dalio",
+    cover: "https://covers.openlibrary.org/b/isbn/9781501124020-M.jpg",
+    desc: "Decision-making systems and radical transparency."
+  },
+];
+
+const sections = [
+  { data: changedHowIOperate, title: "books that changed how I operate", color: "text-crimson" },
+  { data: systemsStrategy, title: "systems & strategy", color: "text-spice" },
+  { data: ctoLeadership, title: "CTO & technical leadership", color: "text-gold" },
+  { data: leadershipExecution, title: "leadership & execution", color: "text-water" },
+  { data: businessStartups, title: "business & startups", color: "text-violet" },
+];
+---
+
+<Layout title="library" description="A curated reading list built over 200+ books across strategy, systems thinking, technical leadership, philosophy, and fiction.">
+  <div class="space-y-8">
+    <h1 class="font-display text-4xl font-normal animate-fade-up">library</h1>
+    <p class="text-dim animate-fade-up delay-1">a curated reading list built over 200+ books across strategy, systems thinking, technical leadership, philosophy, and fiction.</p>
+
+    {sections.map((section, i) => (
+      <div class={`animate-fade-up delay-${i + 2} mt-16`}>
+        <h2 class={`font-mono text-sm ${section.color} mb-6`}>{section.title}</h2>
+
+        <div class="space-y-8">
+          {section.data.map((book) => (
+            <div class="flex gap-5 items-start">
+              {book.cover ? (
+                <img
+                  src={book.cover}
+                  alt={book.title}
+                  class="w-16 h-auto rounded shadow-md flex-shrink-0 bg-surface"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-16 h-24 rounded shadow-md flex-shrink-0 bg-surface border border-border flex items-center justify-center">
+                  <span class="text-faint text-xs font-mono text-center px-1">{book.title.split(' ').slice(0, 2).join(' ')}</span>
+                </div>
+              )}
+              <div>
+                <h3 class="font-display text-lg text-text">{book.title}</h3>
+                <p class="text-faint text-xs font-mono mb-1">{book.author}</p>
+                <p class="text-dim text-sm" set:html={book.desc} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>
