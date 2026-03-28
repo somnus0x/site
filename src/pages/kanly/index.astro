@@ -11,6 +11,12 @@ const protocolColors: Record<string, { text: string; border: string }> = {
   learn: { text: 'text-sand', border: 'hover:border-sand/30' },
   guard: { text: 'text-crimson', border: 'hover:border-crimson/30' },
   dissent: { text: 'text-violet', border: 'hover:border-violet/30' },
+  replace: { text: 'text-crimson', border: 'hover:border-crimson/30' },
+  'design-gate': { text: 'text-gold', border: 'hover:border-gold/30' },
+  breakdown: { text: 'text-water', border: 'hover:border-water/30' },
+  review: { text: 'text-spice', border: 'hover:border-spice/30' },
+  'test-gate': { text: 'text-sand', border: 'hover:border-sand/30' },
+  verify: { text: 'text-violet', border: 'hover:border-violet/30' },
 };
 
 const protocolCommands: Record<string, string[]> = {
@@ -18,8 +24,14 @@ const protocolCommands: Record<string, string[]> = {
   spec: ['bind', 'note', 'check', 'diff'],
   scope: ['add', 'check', 'list'],
   learn: ['add', 'check', 'list'],
-  guard: ['classify', 'check', 'tripwire'],
-  dissent: ['always-on', 'review', 'override'],
+  guard: ['classify', 'check', 'tripwire', 'trace', 'verify'],
+  dissent: ['review', 'override', 'log'],
+  replace: ['confirm', 'trace', 'execute', 'verify'],
+  'design-gate': ['write', 'check', 'review'],
+  breakdown: ['write', 'view', 'validate'],
+  review: ['write', 'check', 'done'],
+  'test-gate': ['check', 'run', 'gate'],
+  verify: ['run', 'status'],
 };
 ---
 
