@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="kanly v2" description="stole like an artist">
+  <div class="max-w-2xl">
+    <div class="font-mono text-xs text-faint mb-4 animate-fade-up">
+      <a href="/writing" class="text-spice hover:underline">writing</a> <span class="text-faint">/</span> kanly v2
+    </div>
+
+    <article class="space-y-6">
+      <h1 class="font-display text-4xl font-normal animate-fade-up">kanly v2</h1>
+
+      <div class="space-y-10 mt-10 animate-fade-up delay-1">
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">1/</span>
+          <p class="mt-2">been seeing superpowers for a while now</p>
+          <p>119k stars. decided to see what the hype was about</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">2/</span>
+          <p class="mt-2">realized i've been doing most of this already</p>
+          <p>but as the conductor. manually. if i miss a step <span class="text-crimson">the whole castle of cards falls</span></p>
+          <p class="text-dim mt-3">no gate stopping me from shipping without a spec</p>
+          <p class="text-dim">no one checking if the code matches what i said i'd build</p>
+          <p class="text-dim">just vibes and momentum</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">3/</span>
+          <p class="mt-2">so i let my copilot take a look</p>
+          <p>it analyzed superpowers, grill-me, the whole ecosystem</p>
+          <p>then updated my own <span class="text-spice">bootleg version</span></p>
+          <p class="mt-3 text-gold">stole like an artist</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">4/</span>
+          <p class="mt-2"><span class="text-water">verify when done</span> — no more playing detective and teacher with your ai</p>
+          <p>run the command. show the output. then claim success</p>
+          <p class="text-crimson mt-3">no more "should work now"</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">5/</span>
+          <p class="mt-2"><span class="text-water">dissent on steroids</span> — most copilots agree with everything you say. mine traces the decision tree, reads the codebase first, only asks questions code can't answer</p>
+          <p class="mt-3 text-spice">you don't need a yes machine. you need something that catches what you missed before it ships</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">6/</span>
+          <p class="mt-2">tdd gate — not the full iron law. just "does a test exist before you call this done"</p>
+          <p class="mt-3">design gate before any non-trivial code</p>
+          <p>file-level breakdown before implementation</p>
+          <p>cross-terminal review after changes ship</p>
+          <p class="mt-3 text-gold">everything i do manually. automated in a flash</p>
+        </div>
+
+        <div class="thread-post">
+          <span class="font-mono text-xs text-faint">7/</span>
+          <p class="mt-2">that's what you get with a tight feedback loop</p>
+          <p class="mt-3"><a href="https://github.com/somnus0x/kanly" target="_blank" rel="noopener" class="text-spice hover:underline">github.com/somnus0x/kanly</a></p>
+        </div>
+      </div>
+
+    </article>
+
+    <div class="mt-16 pt-6 border-t border-border space-y-4">
+      <div>
+        <a href="https://github.com/somnus0x/kanly" target="_blank" rel="noopener" class="text-spice hover:underline">→ github.com/somnus0x/kanly</a>
+      </div>
+      <div>
+        <a href="/kanly" class="text-spice hover:underline">→ view the protocols</a>
+      </div>
+      <div>
+        <a href="/writing/kanly-governance" class="text-spice hover:underline">→ kanly v1 thread</a>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-border">
+      <a href="/writing" class="text-spice hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .thread-post {
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(212, 168, 100, 0.12);
+  }
+
+  .thread-post p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+</style>
