@@ -1,0 +1,353 @@
+---
+// Easter egg: The Litany of Fear
+// Triggered from Dune book cover on library page
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>the litany</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0806;
+      overflow: hidden;
+      cursor: none;
+      width: 100vw;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+    #gom-jabbar {
+      position: fixed;
+      pointer-events: none;
+      z-index: 10;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d4943a;
+      box-shadow: 0 0 12px rgba(212, 148, 58, 0.6), 0 0 4px rgba(212, 148, 58, 0.9);
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    #hint {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: "Crimson Pro", Georgia, serif;
+      font-size: 14px;
+      color: rgba(154, 139, 116, 0.5);
+      letter-spacing: 0.1em;
+      transition: opacity 2s;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sand"></canvas>
+  <div id="gom-jabbar"></div>
+  <div id="hint">move</div>
+
+  <script>
+    const canvas = document.getElementById('sand');
+    const ctx = canvas.getContext('2d');
+    const jabbar = document.getElementById('gom-jabbar');
+    const hint = document.getElementById('hint');
+
+    const dpr = window.devicePixelRatio || 1;
+    let W, H;
+
+    function resize() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Litany of Fear
+    const lines = [
+      "I must not fear.",
+      "Fear is the mind-killer.",
+      "Fear is the little-death",
+      "that brings total obliteration.",
+      "I will face my fear.",
+      "I will permit it to pass",
+      "over me and through me.",
+      "And when it has gone past",
+      "I will turn the inner eye",
+      "to see its path.",
+      "Where the fear has gone",
+      "there will be nothing.",
+      "Only I will remain."
+    ];
+
+    // Render text to offscreen canvas for collision map
+    const textCanvas = document.createElement('canvas');
+    const textCtx = textCanvas.getContext('2d');
+    textCanvas.width = W * dpr;
+    textCanvas.height = H * dpr;
+    textCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const fontSize = Math.min(W * 0.032, 28);
+    const lineHeight = fontSize * 1.8;
+    const totalTextHeight = lines.length * lineHeight;
+    const startY = (H - totalTextHeight) / 2 + fontSize;
+
+    textCtx.font = `${fontSize}px "Crimson Pro", Georgia, serif`;
+    textCtx.fillStyle = '#1e1914';
+    textCtx.textAlign = 'center';
+    textCtx.textBaseline = 'alphabetic';
+
+    lines.forEach((line, i) => {
+      textCtx.fillText(line, W / 2, startY + i * lineHeight);
+    });
+
+    // Get text pixel data for collision
+    const textImageData = textCtx.getImageData(0, 0, W * dpr, H * dpr);
+    const textPixels = textImageData.data;
+
+    function isTextPixel(x, y) {
+      const px = Math.floor(x * dpr);
+      const py = Math.floor(y * dpr);
+      if (px < 0 || px >= W * dpr || py < 0 || py >= H * dpr) return false;
+      const i = (py * W * dpr + px) * 4;
+      return textPixels[i + 3] > 30;
+    }
+
+    // Sand particles
+    const PARTICLE_COUNT = Math.min(Math.floor(W * H * 0.012), 6000);
+    const particles = [];
+
+    // Sand color palette — warm desert tones
+    const sandColors = [
+      [168, 155, 106],  // --sand
+      [196, 162, 101],  // --gold
+      [154, 139, 116],  // --dim
+      [212, 148, 58],   // --spice (rare)
+      [139, 122, 95],   // dark sand
+      [180, 160, 120],  // light sand
+    ];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const color = sandColors[Math.random() < 0.05 ? 3 : Math.floor(Math.random() * sandColors.length)];
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: 0,
+        vy: 0,
+        size: 1.2 + Math.random() * 1.8,
+        r: color[0] + Math.floor(Math.random() * 20 - 10),
+        g: color[1] + Math.floor(Math.random() * 20 - 10),
+        b: color[2] + Math.floor(Math.random() * 20 - 10),
+        settled: false,
+        mass: 0.5 + Math.random() * 0.5,
+      });
+    }
+
+    let mouseX = -100, mouseY = -100;
+    let mouseActive = false;
+    let revealedPixels = 0;
+    let totalTextPixels = 0;
+    let redirecting = false;
+    let hintFaded = false;
+
+    // Count total text pixels
+    for (let y = 0; y < H; y += 3) {
+      for (let x = 0; x < W; x += 3) {
+        if (isTextPixel(x, y)) totalTextPixels++;
+      }
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      mouseActive = true;
+      jabbar.style.opacity = '1';
+      jabbar.style.left = mouseX + 'px';
+      jabbar.style.top = mouseY + 'px';
+
+      if (!hintFaded) {
+        hint.style.opacity = '0';
+        hintFaded = true;
+      }
+    });
+
+    document.addEventListener('mouseleave', () => {
+      mouseActive = false;
+      jabbar.style.opacity = '0';
+    });
+
+    // Touch support
+    document.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const t = e.touches[0];
+      mouseX = t.clientX;
+      mouseY = t.clientY;
+      mouseActive = true;
+      jabbar.style.opacity = '1';
+      jabbar.style.left = mouseX + 'px';
+      jabbar.style.top = mouseY + 'px';
+      if (!hintFaded) {
+        hint.style.opacity = '0';
+        hintFaded = true;
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+      mouseActive = false;
+      jabbar.style.opacity = '0';
+    });
+
+    const CURSOR_RADIUS = Math.max(40, W * 0.04);
+    const REPEL_STRENGTH = 0.8;
+    const GRAVITY = 0.02;
+    const FRICTION = 0.92;
+    const SETTLE_SPEED = 0.003;
+
+    function update() {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        if (mouseActive) {
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < CURSOR_RADIUS && dist > 0) {
+            const force = (1 - dist / CURSOR_RADIUS) * REPEL_STRENGTH;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+            p.settled = false;
+          }
+        }
+
+        // Gravity — sand falls
+        p.vy += GRAVITY * p.mass;
+
+        // Friction
+        p.vx *= FRICTION;
+        p.vy *= FRICTION;
+
+        // Settle back slowly toward text areas when undisturbed
+        if (!p.settled && Math.abs(p.vx) < 0.1 && Math.abs(p.vy) < 0.15) {
+          // Drift slowly — wind effect
+          p.vx += (Math.random() - 0.5) * SETTLE_SPEED;
+          p.vy += (Math.random() - 0.5) * SETTLE_SPEED;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Boundary — wrap around
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y > H + 10) {
+          p.y = -10;
+          p.vy = 0;
+        }
+        if (p.y < -10) {
+          p.y = H + 10;
+          p.vy = 0;
+        }
+      }
+    }
+
+    function draw() {
+      // Clear with background
+      ctx.fillStyle = '#0a0806';
+      ctx.fillRect(0, 0, W, H);
+
+      // Draw text underneath (carved into sand)
+      ctx.drawImage(textCanvas, 0, 0, W, H);
+
+      // Draw sand particles on top
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        ctx.fillStyle = `rgb(${p.r},${p.g},${p.b})`;
+        ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+      }
+
+      // Draw gom jabbar glow on canvas too
+      if (mouseActive) {
+        const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, CURSOR_RADIUS);
+        gradient.addColorStop(0, 'rgba(212, 148, 58, 0.06)');
+        gradient.addColorStop(1, 'rgba(212, 148, 58, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(mouseX - CURSOR_RADIUS, mouseY - CURSOR_RADIUS, CURSOR_RADIUS * 2, CURSOR_RADIUS * 2);
+      }
+    }
+
+    // Check if enough text is revealed
+    function checkReveal() {
+      let cleared = 0;
+      const sampleStep = 4;
+      let sampled = 0;
+
+      for (let y = Math.floor(startY - fontSize); y < startY + totalTextHeight; y += sampleStep) {
+        for (let x = Math.floor(W / 2 - W * 0.3); x < W / 2 + W * 0.3; x += sampleStep) {
+          if (!isTextPixel(x, y)) continue;
+          sampled++;
+          // Check if any sand particle is near this text pixel
+          let covered = false;
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = p.x - x;
+            const dy = p.y - y;
+            if (dx * dx + dy * dy < 9) {
+              covered = true;
+              break;
+            }
+          }
+          if (!covered) cleared++;
+        }
+      }
+
+      if (sampled > 0 && cleared / sampled > 0.7 && !redirecting) {
+        redirecting = true;
+        // Fade out and redirect
+        setTimeout(() => {
+          document.body.style.transition = 'opacity 2s';
+          document.body.style.opacity = '0';
+          setTimeout(() => {
+            window.location.href = 'https://en.wikipedia.org/wiki/Dune_(novel)';
+          }, 2000);
+        }, 3000);
+      }
+    }
+
+    let frame = 0;
+    function loop() {
+      update();
+      draw();
+      frame++;
+      if (frame % 60 === 0) checkReveal();
+      requestAnimationFrame(loop);
+    }
+
+    // Wait for font
+    document.fonts.ready.then(() => {
+      // Re-render text with loaded font
+      textCtx.clearRect(0, 0, W, H);
+      textCtx.font = `${fontSize}px "Crimson Pro", Georgia, serif`;
+      textCtx.fillStyle = '#1e1914';
+      textCtx.textAlign = 'center';
+      textCtx.textBaseline = 'alphabetic';
+      lines.forEach((line, i) => {
+        textCtx.fillText(line, W / 2, startY + i * lineHeight);
+      });
+      loop();
+    });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&display=swap" rel="stylesheet">
+</body>
+</html>

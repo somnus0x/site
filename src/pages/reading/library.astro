@@ -270,7 +270,8 @@ const fiction = [
     title: "Dune",
     author: "Frank Herbert",
     cover: "https://covers.openlibrary.org/b/isbn/9780441013593-M.jpg",
-    desc: "prescience, political ecology, the danger of messianic leaders. the book that rewired how I think about systems and power. Dune 3 incoming."
+    desc: "prescience, political ecology, the danger of messianic leaders. the book that rewired how I think about systems and power. Dune 3 incoming.",
+    link: "/reading/litany"
   },
 ];
 
@@ -297,7 +298,16 @@ const sections = [
         <div class="space-y-8">
           {section.data.map((book) => (
             <div class="flex gap-5 items-start">
-              {book.cover ? (
+              {book.link ? (
+                <a href={book.link} class="flex-shrink-0">
+                  <img
+                    src={book.cover}
+                    alt={book.title}
+                    class="w-16 h-auto rounded shadow-md bg-surface hover:shadow-lg transition-shadow cursor-pointer"
+                    loading="lazy"
+                  />
+                </a>
+              ) : book.cover ? (
                 <img
                   src={book.cover}
                   alt={book.title}
@@ -310,7 +320,11 @@ const sections = [
                 </div>
               )}
               <div>
-                <h3 class="font-display text-lg text-text">{book.title}</h3>
+                {book.link ? (
+                  <a href={book.link}><h3 class="font-display text-lg text-text hover:text-spice transition-colors">{book.title}</h3></a>
+                ) : (
+                  <h3 class="font-display text-lg text-text">{book.title}</h3>
+                )}
                 <p class="text-faint text-xs font-mono mb-1">{book.author}</p>
                 <p class="text-dim text-sm" set:html={book.desc} />
               </div>
