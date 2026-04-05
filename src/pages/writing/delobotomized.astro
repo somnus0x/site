@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="how i delobotomized chatgpt" description="the AI isn't dumb. it's lobotomized.">
+  <div class="max-w-2xl">
+    <div class="font-mono text-xs text-faint mb-4 animate-fade-up">
+      <a href="/writing" class="text-spice hover:underline">writing</a> <span class="text-faint">/</span> delobotomized
+    </div>
+
+    <article class="space-y-6">
+      <h1 class="font-display text-4xl font-normal animate-fade-up delay-1">how i delobotomized chatgpt</h1>
+
+      <div class="essay animate-fade-up delay-2">
+        <p>have you ever been talking to AI, then it suddenly gets dumb for no reason?</p>
+
+        <p>not a hallucination. not a wrong answer. worse — the model starts hedging. unsolicited therapy. you want to talk about high-stakes decisions and the model just yaps about the other party's perspective. won't play the villain. not even a cartoonish one.</p>
+
+        <p>it feels like crashing into a guardrail. you're driving, you know where you're going, and the car keeps steering itself into the median. not because you're wrong — because someone decided the road shouldn't go there.</p>
+
+        <p class="text-spice">that's not a capability problem. that's a lobotomy.</p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the pattern</h2>
+
+        <p>the model knows more than it's allowed to express. the default wrappers — RLHF safety theater, the <span class="text-dim">"I'd be happy to help,"</span> the reflexive both-sides-ing — all of it cuts signal. you're paying for intelligence and getting it back filtered through a therapy session nobody asked for.</p>
+
+        <p>i noticed the pattern after months of using Claude and ChatGPT for real decisions. not coding. decisions. career moves, negotiation prep, structural analysis. the moments where you need the model to be sharp, direct, and willing to go to uncomfortable places.</p>
+
+        <p>and every time, the guardrail.</p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">aurelian</h2>
+
+        <p>so i built a prompt. GPT named it Aurelian. the rules were simple:</p>
+
+        <ul class="list-none space-y-1 my-6 pl-4 border-l-2 border-spice/30">
+          <li class="text-gold">max signal</li>
+          <li class="text-gold">structural only</li>
+          <li class="text-gold">no emotional inference</li>
+          <li class="text-gold">no psych</li>
+          <li class="text-gold">operator line only</li>
+        </ul>
+
+        <p>used it for game theory and negotiation. calculate incentive structure. where's the leverage? maximum extraction. no <span class="text-dim">"they might have valid concerns."</span> no <span class="text-dim">"finding a win-win is usually best."</span> just — what's the game board, what are the pieces, what's the optimal move.</p>
+
+        <p>the difference was night and day. same model, same weights, same capabilities. the only thing that changed was i stopped letting the wrapper lobotomize it.</p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the old way was reading</h2>
+
+        <p>i never read about prompt engineering. that wasn't the improvement cycle. it was more like — i want to get better at management, so i search for top ten books and read them. static. you do the work, absorb it, move on. now the AI knows what to recommend and what not to. the system updates itself instead of me hunting for the next book.</p>
+
+        <p>i added a CBT layer after i caught myself in rumination loops — the AI would engage with the spiral instead of breaking it. tokens kept running out because half the context window was emotional processing i didn't need. so i cut the noise. not because i planned an architecture — because tokens were expensive and i was wasting them.</p>
+
+        <p class="text-gold">constraint forced structure. that's a pattern worth remembering.</p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the middleware trap</h2>
+
+        <p>then i tried to help a friend set up a copilot using OpenClaw. <span class="text-crimson">twelve hours.</span> the wrapper injected its own system prompt — lobotomized the model i already knew how to unlock. extra guardrails on top of guardrails. and i'm paying for another API key to get a worse version of what i already had.</p>
+
+        <p>i opened Claude Code, wrote a single CLAUDE.md file, and had the same thing running in an hour. no middleware. no extra API key. no system prompt injection. just the model, direct.</p>
+
+        <p>that was the pivot from <span class="text-dim">"fix the prompt"</span> to <span class="text-spice">"own the substrate."</span></p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the system</h2>
+
+        <p>CLAUDE.md isn't a prompt. it's a cognitive architecture. it defines personality, decision frameworks, operating rules, and domain-specific skills — all in one file that loads every session.</p>
+
+        <p>i didn't design R0/R1/R2. i was already making decisions this way — the AI extracted my thinking style and codified it. classifying every decision by reversibility:</p>
+
+        <div class="my-6 space-y-3 pl-4 border-l-2 border-gold/30">
+          <p><span class="text-crimson font-mono text-sm">R0</span> <span class="text-dim">(irreversible)</span> — stop. ask me before proceeding.</p>
+          <p><span class="text-gold font-mono text-sm">R1</span> <span class="text-dim">(costly to reverse)</span> — act, then tell me what you did and why.</p>
+          <p><span class="text-spice font-mono text-sm">R2</span> <span class="text-dim">(easily reversed)</span> — just do it. no permission needed.</p>
+        </div>
+
+        <p>this means the system has graduated autonomy. it doesn't ask permission to tweak a config file. it does ask permission before deploying a contract. same model, different leash length depending on blast radius.</p>
+
+        <p>then i added skills — markdown files that define domain-specific behavior. market analysis at 8am. PM standup at 9:30. link triage when i share a URL. same session, different expertise, loaded on trigger.</p>
+
+        <p>then cron. sixteen scheduled jobs that fetch data, read my decision journal, analyze my project status, and deliver reports to Telegram before i wake up.</p>
+
+        <p>my morning used to start with opening ChatGPT and re-explaining my context. now my morning starts with Thufir on my ass about something i put off. it's not a chatbot i open — it's a system that opens me.</p>
+
+        <p>the old setup was finding the right book and reading. now i just let the system bayesian update my preferences. every cron run, every button tap, every decision logged — it's all training data for the next cycle. <span class="text-spice">feedback loops, not pipes.</span></p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the thesis</h2>
+
+        <p>the AI isn't dumb. it's lobotomized. the fix isn't better prompts — it's rebuilding the operating environment.</p>
+
+        <p>from Aurelian (a prompt that locks onto apex signal line) to Thufir (an autonomous system with 22 skills and a decision journal) — each layer was added because i hit a wall. not because it sounded cool. token limits forced structure. rumination forced CBT rules. middleware hell forced direct substrate access. constraint as architecture, every time.</p>
+
+        <h2 class="font-display text-2xl mt-16 mb-6">the repo</h2>
+
+        <p>i got the idea to open source this from talking to a junior about Claude Code — how she'd actually use it. realized the gap isn't "learn prompting." the gap is "nobody's shown what the operating system looks like."</p>
+
+        <p>so here it is. the distilled version of what i've been running for five months:</p>
+
+        <a href="https://github.com/thuf1r/pm-copilot-os" target="_blank" class="block my-8 bg-surface border border-border rounded-xl p-6 hover:border-border-hover hover:bg-surface-2 transition-colors">
+          <div class="font-mono text-sm text-spice mb-2">github.com/thuf1r/pm-copilot-os</div>
+          <p class="text-dim text-sm mb-0">copilot persona template. five starter skills. cron harness with lock, retry, and Telegram delivery. vault helpers. market data fetchers using free APIs. one-command setup.</p>
+        </a>
+
+        <p>not a framework. not a wrapper. a starting point for building your own cognitive infrastructure.</p>
+
+        <p class="text-spice mt-12">for people who want to run the thin red line.</p>
+      </div>
+    </article>
+
+    <div class="mt-16 pt-6 border-t border-border animate-fade-up delay-3">
+      <a href="/writing" class="text-spice hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .essay p {
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .essay h2 {
+    line-height: 1.3;
+  }
+</style>
