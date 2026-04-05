@@ -16,7 +16,7 @@
   --color-water: #4a7b8c;
   --color-violet: #8b7bb5;
 
-  --color-border: rgba(212, 168, 100, 0.08);
+  --color-border: rgba(212, 168, 100, 0.10);
   --color-border-hover: rgba(212, 168, 100, 0.18);
   --color-border-strong: rgba(212, 168, 100, 0.30);
 
@@ -64,6 +64,17 @@ body {
   background-attachment: fixed;
 }
 
+/* Text selection */
+::selection {
+  background: rgba(212, 148, 58, 0.30);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-faint); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-dim); }
+
 a {
   color: var(--color-spice);
   text-decoration: none;
@@ -76,6 +87,18 @@ a:hover {
 a.no-underline,
 a.no-underline:hover {
   text-decoration: none;
+}
+
+/* Display heading letter-spacing — tighten serif at large sizes */
+article h1,
+h1.font-display,
+h1[class*="font-display"] {
+  letter-spacing: -0.02em;
+}
+
+h2.font-display,
+h2[class*="font-display"] {
+  letter-spacing: -0.01em;
 }
 
 /* Prose styles for markdown content */

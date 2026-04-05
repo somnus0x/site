@@ -64,7 +64,7 @@ const protocolCommands: Record<string, string[]> = {
           return (
             <a
               href={`/kanly/${protocol.data.slug}`}
-              class={`block no-underline bg-surface border border-border rounded-xl p-7 hover:border-border-hover ${colors.border} transition-colors`}
+              class={`block no-underline bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 ${colors.border} transition-colors`}
             >
               <h3 class={`font-display text-xl ${colors.text} mb-2`}>{protocol.data.title}</h3>
               <p class="text-dim mb-3">{protocol.data.description}</p>
