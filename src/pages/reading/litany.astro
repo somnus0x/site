@@ -7,6 +7,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>the litany</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -62,16 +64,6 @@
     const dpr = window.devicePixelRatio || 1;
     let W, H;
 
-    function resize() {
-      W = window.innerWidth;
-      H = window.innerHeight;
-      canvas.width = W * dpr;
-      canvas.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
     // Litany of Fear
     const lines = [
       "I must not fear.",
@@ -89,42 +81,13 @@
       "Only I will remain."
     ];
 
-    // Render text to offscreen canvas for collision map
+    // Mutable state rebuilt on resize
     const textCanvas = document.createElement('canvas');
     const textCtx = textCanvas.getContext('2d');
-    textCanvas.width = W * dpr;
-    textCanvas.height = H * dpr;
-    textCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    const fontSize = Math.min(W * 0.032, 28);
-    const lineHeight = fontSize * 1.8;
-    const totalTextHeight = lines.length * lineHeight;
-    const startY = (H - totalTextHeight) / 2 + fontSize;
-
-    textCtx.font = `${fontSize}px "Crimson Pro", Georgia, serif`;
-    textCtx.fillStyle = '#1e1914';
-    textCtx.textAlign = 'center';
-    textCtx.textBaseline = 'alphabetic';
-
-    lines.forEach((line, i) => {
-      textCtx.fillText(line, W / 2, startY + i * lineHeight);
-    });
-
-    // Get text pixel data for collision
-    const textImageData = textCtx.getImageData(0, 0, W * dpr, H * dpr);
-    const textPixels = textImageData.data;
-
-    function isTextPixel(x, y) {
-      const px = Math.floor(x * dpr);
-      const py = Math.floor(y * dpr);
-      if (px < 0 || px >= W * dpr || py < 0 || py >= H * dpr) return false;
-      const i = (py * W * dpr + px) * 4;
-      return textPixels[i + 3] > 30;
-    }
-
-    // Sand particles
-    const PARTICLE_COUNT = Math.min(Math.floor(W * H * 0.012), 6000);
-    const particles = [];
+    let fontSize, lineHeight, totalTextHeight, startY;
+    let textPixels;
+    let CURSOR_RADIUS;
+    let particles = [];
 
     // Sand color palette — warm desert tones
     const sandColors = [
@@ -136,20 +99,82 @@
       [180, 160, 120],  // light sand
     ];
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const color = sandColors[Math.random() < 0.05 ? 3 : Math.floor(Math.random() * sandColors.length)];
-      particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: 0,
-        vy: 0,
-        size: 1.2 + Math.random() * 1.8,
-        r: color[0] + Math.floor(Math.random() * 20 - 10),
-        g: color[1] + Math.floor(Math.random() * 20 - 10),
-        b: color[2] + Math.floor(Math.random() * 20 - 10),
-        settled: false,
-        mass: 0.5 + Math.random() * 0.5,
+    function rebuildState() {
+      const oldW = W;
+      const oldH = H;
+      W = window.innerWidth;
+      H = window.innerHeight;
+
+      // Resize visible canvas
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Rebuild text canvas and collision map
+      textCanvas.width = W * dpr;
+      textCanvas.height = H * dpr;
+      textCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      fontSize = Math.min(W * 0.032, 28);
+      lineHeight = fontSize * 1.8;
+      totalTextHeight = lines.length * lineHeight;
+      startY = (H - totalTextHeight) / 2 + fontSize;
+
+      textCtx.font = `${fontSize}px "Crimson Pro", Georgia, serif`;
+      textCtx.fillStyle = '#1e1914';
+      textCtx.textAlign = 'center';
+      textCtx.textBaseline = 'alphabetic';
+      lines.forEach((line, i) => {
+        textCtx.fillText(line, W / 2, startY + i * lineHeight);
       });
+
+      const textImageData = textCtx.getImageData(0, 0, W * dpr, H * dpr);
+      textPixels = textImageData.data;
+
+      CURSOR_RADIUS = Math.max(40, W * 0.04);
+
+      // Rescale existing particles or create new ones
+      if (oldW && oldH && particles.length > 0) {
+        const scaleX = W / oldW;
+        const scaleY = H / oldH;
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].x *= scaleX;
+          particles[i].y *= scaleY;
+        }
+      } else {
+        const count = Math.min(Math.floor(W * H * 0.012), 6000);
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          const color = sandColors[Math.random() < 0.05 ? 3 : Math.floor(Math.random() * sandColors.length)];
+          particles.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: 0,
+            vy: 0,
+            size: 1.2 + Math.random() * 1.8,
+            r: color[0] + Math.floor(Math.random() * 20 - 10),
+            g: color[1] + Math.floor(Math.random() * 20 - 10),
+            b: color[2] + Math.floor(Math.random() * 20 - 10),
+            settled: false,
+            mass: 0.5 + Math.random() * 0.5,
+          });
+        }
+      }
+    }
+
+    rebuildState();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuildState, 150);
+    });
+
+    function isTextPixel(x, y) {
+      const px = Math.floor(x * dpr);
+      const py = Math.floor(y * dpr);
+      if (px < 0 || px >= W * dpr || py < 0 || py >= H * dpr) return false;
+      const i = (py * W * dpr + px) * 4;
+      return textPixels[i + 3] > 30;
     }
 
     let mouseX = -100, mouseY = -100;
@@ -206,7 +231,6 @@
       jabbar.style.opacity = '0';
     });
 
-    const CURSOR_RADIUS = Math.max(40, W * 0.04);
     const REPEL_STRENGTH = 0.8;
     const GRAVITY = 0.02;
     const FRICTION = 0.92;
@@ -332,22 +356,11 @@
       requestAnimationFrame(loop);
     }
 
-    // Wait for font
+    // Wait for font, then rebuild text canvas with correct glyphs and start
     document.fonts.ready.then(() => {
-      // Re-render text with loaded font
-      textCtx.clearRect(0, 0, W, H);
-      textCtx.font = `${fontSize}px "Crimson Pro", Georgia, serif`;
-      textCtx.fillStyle = '#1e1914';
-      textCtx.textAlign = 'center';
-      textCtx.textBaseline = 'alphabetic';
-      lines.forEach((line, i) => {
-        textCtx.fillText(line, W / 2, startY + i * lineHeight);
-      });
+      rebuildState();
       loop();
     });
   </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&display=swap" rel="stylesheet">
 </body>
 </html>
