@@ -16,6 +16,8 @@ const ticker = [{"sym": "BTC", "pr": "$71,736", "chg": 0.87, "label": null}, {"s
 const signals = [{"coin": "BTC", "signal": "neutral", "confidence": 58, "rsi1h": 52.95, "rsi4h": 65.41, "change24h": 1.0, "reasons": []}, {"coin": "ETH", "signal": "neutral", "confidence": 58, "rsi1h": 46.55, "rsi4h": 55.46, "change24h": -0.04, "reasons": []}, {"coin": "SOL", "signal": "neutral", "confidence": 50, "rsi1h": 50.22, "rsi4h": 54.68, "change24h": 0.84, "reasons": []}, {"coin": "ATOM", "signal": "neutral", "confidence": 58, "rsi1h": 53.93, "rsi4h": 61.8, "change24h": 1.24, "reasons": []}, {"coin": "INIT", "signal": "neutral", "confidence": 45, "rsi1h": 43.34, "rsi4h": 45.16, "change24h": -2.32, "reasons": []}];
 const positioning = [{"coin": "BTC", "retailLong": 48.0, "whaleLong": 51.3, "oi": "$6.7B", "oiTrend": "flat", "divergence": null, "retailTrend": "stable"}, {"coin": "ETH", "retailLong": 61.6, "whaleLong": 53.2, "oi": "$4.9B", "oiTrend": "flat", "divergence": "notable divergence (retail: 1.60, whales: 1.14)", "retailTrend": "shifting long \u2014 crowd getting greedy"}, {"coin": "SOL", "retailLong": 69.6, "whaleLong": 62.9, "oi": "$714.3M", "oiTrend": "flat", "divergence": "notable divergence (retail: 2.29, whales: 1.69)", "retailTrend": "shifting long \u2014 crowd getting greedy"}];
 
+const narrative = "Market's frozen in amber. BTC holds $71.7K on thin conviction while the world watches Iran ceasefire odds like a roulette wheel. Extreme Fear at 14 says retail has checked out, but credit spreads at 2.94% say institutions haven't flinched — that dissonance is the story. Capital is flowing into staking and restaking infrastructure despite the fear. ETH ecosystem is building yield positions like they expect the dust to settle. The number that matters isn't BTC's price — it's the 35-point gap between Fear & Greed (14, extreme fear) and HY spreads (2.94%, borderline complacency). Retail is terrified. Credit markets are relaxed. One of them is wrong.";
+
 const fred = [{"label": "Fed Funds Rate", "value": "3.64%", "change": 0.0}, {"label": "10Y-2Y Spread", "value": "0.51%", "change": 0.01}, {"label": "Breakeven Inflation", "value": "2.34%", "change": 0.01}, {"label": "Unemployment", "value": "4.3%", "change": -0.1}, {"label": "Trade-Weighted USD", "value": "120.6565", "change": 0.15}, {"label": "HY Spread", "value": "2.94%", "change": -0.18}];
 const cycle = {"position": "Post-Inversion Watch", "realRate": "1.30%", "realRateDir": "restrictive", "curve": "Post-Inversion Normalization", "hy": "2.94%", "unemployment": "4.3%", "fedFunds": "3.64%", "breakeven": "2.34%"};
 
@@ -65,6 +67,11 @@ function chgStr(v: number) { return `${v >= 0 ? '▲ +' : '▼ '}${v.toFixed(2)}
     <div class="animate-fade-up delay-2">
       <h2 class="font-display text-3xl md:text-4xl font-normal leading-tight">{headline}</h2>
       <p class="font-mono text-sm text-dim mt-2 pb-5 border-b border-border">{subheadline}</p>
+    </div>
+
+    {/* NARRATIVE */}
+    <div class="max-w-[640px] animate-fade-up delay-2">
+      <p class="text-dim text-base leading-relaxed">{narrative}</p>
     </div>
 
     {/* MAIN CONTENT */}
