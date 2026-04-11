@@ -55,7 +55,7 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.75;
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
@@ -63,6 +63,11 @@ body {
   background-image: radial-gradient(ellipse at 50% 0%, rgba(212, 148, 58, 0.03) 0%, transparent 70%);
   background-attachment: fixed;
 }
+
+/* Responsive text scaling */
+@media (min-width: 640px) { body { font-size: 18px; } }
+@media (min-width: 1024px) { body { font-size: 19px; } }
+@media (min-width: 1440px) { body { font-size: 20px; } }
 
 /* Text selection */
 ::selection {
@@ -104,7 +109,7 @@ h2[class*="font-display"] {
 /* Prose styles for markdown content */
 article h1 {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: normal;
   margin-bottom: 1.5rem;
   color: var(--color-text);
@@ -112,7 +117,7 @@ article h1 {
 
 article h2 {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: normal;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -121,11 +126,23 @@ article h2 {
 
 article h3 {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: normal;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
+}
+
+@media (min-width: 640px) {
+  article h1 { font-size: 2.5rem; }
+  article h2 { font-size: 1.75rem; }
+  article h3 { font-size: 1.25rem; }
+}
+
+@media (min-width: 1024px) {
+  article h1 { font-size: 2.75rem; }
+  article h2 { font-size: 1.875rem; }
+  article h3 { font-size: 1.35rem; }
 }
 
 article p {
