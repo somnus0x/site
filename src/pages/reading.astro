@@ -3,39 +3,48 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="reading" description="What I read, what landed, and why the gap tells you something.">
-  <div class="space-y-8">
-    <h1 class="font-display text-4xl font-normal animate-fade-up">reading</h1>
-    <p class="text-dim animate-fade-up delay-1">weekly digests. not summaries — filters. what landed, what didn't, and what that says about where the signal actually sits.</p>
+  <header class="animate-fade-up" style="margin-bottom: 40px;">
+    <h1 style="font-size: 2.5rem; letter-spacing: -0.025em;">reading</h1>
+    <p class="text-dim" style="margin-top: 12px; font-size: 17px;">weekly digests. not summaries — filters. what landed, what didn't, and what that says about where the signal actually sits.</p>
+  </header>
 
-    <div class="animate-fade-up delay-1 mt-6 mb-4 space-y-2">
-      <div>
-        <a href="/reading/books" class="text-spice hover:underline font-mono text-sm">→ books for programmers</a>
-        <span class="text-faint text-sm ml-2">— a reading list for junior devs</span>
-      </div>
-      <div>
-        <a href="/reading/library" class="text-spice hover:underline font-mono text-sm">→ library</a>
-        <span class="text-faint text-sm ml-2">— curated across strategy, systems, leadership & startups</span>
-      </div>
+  <div class="animate-fade-up delay-1" style="margin-bottom: 32px; display: flex; flex-direction: column; gap: 8px;">
+    <div>
+      <a href="/reading/books" class="font-mono text-sm no-underline hover:text-accent text-accent">→ books for programmers</a>
+      <span class="text-faint text-sm ml-2">— a reading list for junior devs</span>
     </div>
-
-    <div class="space-y-10 mt-10 animate-fade-up delay-1">
-      <a href="/reading/week-14" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-04-06 · week 14</div>
-        <h2 class="font-display text-xl mb-2">two reads and a pipeline that won't shut up</h2>
-        <p class="text-dim">13% read rate. lowest ever. saved 11 things, read 2. the system kept feeding me while i wasn't eating.</p>
-      </a>
-
-      <a href="/reading/week-13" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-28 · week 13</div>
-        <h2 class="font-display text-xl mb-2">three ben thompson pieces and one surprise</h2>
-        <p class="text-dim">the stratechery streak continued. then a journalist built an iOS app with claude code and made me think harder than any of ben's frameworks.</p>
-      </a>
-
-      <a href="/reading/week-12" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-        <div class="font-mono text-xs text-faint mb-3">2026-03-20 · week 12</div>
-        <h2 class="font-display text-xl mb-2">the ratio is usually like this</h2>
-        <p class="text-dim">four reads on ai tooling. one validated what already works. one taught something that was already figured out. one actually changed a workflow.</p>
-      </a>
+    <div>
+      <a href="/reading/library" class="font-mono text-sm no-underline hover:text-accent text-accent">→ library</a>
+      <span class="text-faint text-sm ml-2">— curated across strategy, systems, leadership & startups</span>
     </div>
+  </div>
+
+  <div class="animate-fade-up delay-2" style="display: flex; flex-direction: column; gap: 32px; margin-top: 40px;">
+    <a href="/reading/week-14" class="block no-underline group">
+      <div style="display: flex; gap: 16px; align-items: baseline; margin-bottom: 6px;">
+        <span class="font-mono text-faint" style="font-size: 11px; letter-spacing: 0.08em;">2026.04.06</span>
+        <span class="font-mono text-faint" style="font-size: 11px;">week 14</span>
+      </div>
+      <h3 class="group-hover:text-accent transition-colors" style="font-size: 1.5rem; margin-bottom: 8px;">two reads and a pipeline that won't shut up</h3>
+      <p class="text-dim" style="font-size: 16px; line-height: 1.65;">13% read rate. lowest ever. saved 11 things, read 2. the system kept feeding me while i wasn't eating.</p>
+    </a>
+
+    <a href="/reading/week-13" class="block no-underline group">
+      <div style="display: flex; gap: 16px; align-items: baseline; margin-bottom: 6px;">
+        <span class="font-mono text-faint" style="font-size: 11px; letter-spacing: 0.08em;">2026.03.28</span>
+        <span class="font-mono text-faint" style="font-size: 11px;">week 13</span>
+      </div>
+      <h3 class="group-hover:text-accent transition-colors" style="font-size: 1.5rem; margin-bottom: 8px;">three ben thompson pieces and one surprise</h3>
+      <p class="text-dim" style="font-size: 16px; line-height: 1.65;">the stratechery streak continued. then a journalist built an iOS app with claude code and made me think harder than any of ben's frameworks.</p>
+    </a>
+
+    <a href="/reading/week-12" class="block no-underline group">
+      <div style="display: flex; gap: 16px; align-items: baseline; margin-bottom: 6px;">
+        <span class="font-mono text-faint" style="font-size: 11px; letter-spacing: 0.08em;">2026.03.20</span>
+        <span class="font-mono text-faint" style="font-size: 11px;">week 12</span>
+      </div>
+      <h3 class="group-hover:text-accent transition-colors" style="font-size: 1.5rem; margin-bottom: 8px;">the ratio is usually like this</h3>
+      <p class="text-dim" style="font-size: 16px; line-height: 1.65;">four reads on ai tooling. one validated what already works. one taught something that was already figured out. one actually changed a workflow.</p>
+    </a>
   </div>
 </Layout>

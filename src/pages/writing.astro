@@ -1,113 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// All posts — date desc. tag: essay | thread | raw
+const posts = [
+  { slug: 'ai-fight-club', title: 'ai fight club', date: '2026-04-10', desc: 'so are you gonna trust one model or you gonna verify the result', tag: 'raw' },
+  { slug: 'delobotomized', title: 'how i delobotomized chatgpt', date: '2026-04-05', desc: "the AI isn't dumb. it's lobotomized. the fix isn't better prompts — it's rebuilding the operating environment.", tag: 'essay' },
+  { slug: 'kanly-v2', title: 'kanly v2', date: '2026-03-28', desc: "stole like an artist. 119k-star repo analyzed, patterns lifted, bootleg version upgraded.", tag: 'essay' },
+  { slug: 'compensation-architecture', title: 'compensation architecture', date: '2026-03-28', desc: "you don't build self-governance infrastructure because you're disciplined. you build it because you're not.", tag: 'essay' },
+  { slug: 'brain-begging-for-sugar', title: 'brain begging for sugar', date: '2026-03-21', desc: 'the bottleneck used to be building and grinding. now its inverted.', tag: 'raw' },
+  { slug: 'remotion-one-prompt', title: 'one prompt, one video', date: '2026-03-21', desc: 'heard about remotion. never opened the docs. wrote one paragraph, got a launch video back in 60 seconds.', tag: 'essay' },
+  { slug: 'judgement-per-hour', title: 'judgement per hour', date: '2026-03-21', desc: 'wrong metric is lines of code. the one that compounds is judgement calls.', tag: 'essay' },
+  { slug: 'build-your-own-arsenal', title: 'build your own arsenal', date: '2026-03-19', desc: "best skills don't come from browsing packs. they come from the step that keeps repeating because skipping it broke something.", tag: 'essay' },
+  { slug: 'ai-yes-machine', title: "you're not thinking with ai. you're hiding behind it.", date: '2026-03-18', desc: "there's a version of ai productivity that looks like building and functions like avoidance.", tag: 'essay' },
+  { slug: 'baptism-by-ice', title: 'baptism by ice', date: '2026-03-17', desc: "walk long enough and things separate on their own. what matters. what doesn't.", tag: 'essay' },
+  { slug: 'market-timing', title: 'market timing', date: '2026-03-13', desc: "co-founded knowhere. $30m volume. we were tracking to #1. window closed. market timing beats execution every time.", tag: 'essay' },
+  { slug: 'new-paradigm', title: 'new paradigm', date: '2026-03-12', desc: 'designer codes. developer codes. biz guy codes. the tool just works for all three now.', tag: 'thread' },
+  { slug: 'kanly-governance', title: 'kanly governance', date: '2026-03-09', desc: "ai makes you faster at building the wrong thing too. governance isn't overhead — it's what keeps speed from becoming expensive.", tag: 'essay' },
+  { slug: 'openclaw-to-claude-code', title: 'openclaw → claude code', date: '2026-03-09', desc: 'the middleware was the problem the entire time.', tag: 'thread' },
+  { slug: 'ai-coding', title: 'ai in coding', date: '2026-03-08', desc: 'not chasing speed — trying to see where it actually changes outcomes. a 10-post thread.', tag: 'thread' },
+];
+
+function formatDate(d: string) {
+  return d.replace(/-/g, '.');
+}
 ---
 
 <Layout title="writing" description="Essays, threads, and raw thoughts">
-  <div class="space-y-8">
-    <h1 class="font-display text-4xl font-normal animate-fade-up">writing</h1>
+  <header class="animate-fade-up" style="margin-bottom: 40px;">
+    <h1 style="font-size: 2.5rem; letter-spacing: -0.025em;">writing</h1>
+    <p class="text-dim" style="margin-top: 12px; font-size: 17px;">Essays and threads. Mostly about building with AI.</p>
+  </header>
 
-    <div class="animate-fade-up delay-1">
-      <h2 class="font-mono text-sm text-spice mb-6">raw</h2>
-      <p class="text-dim text-sm mb-8">unpolished. written by hand. rough edges stay.</p>
-
-      <div class="space-y-10">
-        <a href="/writing/ai-fight-club" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-04-10</div>
-          <h2 class="font-display text-xl mb-2">ai fight club</h2>
-          <p class="text-dim">so are you gonna trust one model or you gonna verify the result</p>
-        </a>
-
-        <a href="/writing/brain-begging-for-sugar" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
-          <h2 class="font-display text-xl mb-2">brain begging for sugar</h2>
-          <p class="text-dim">the bottleneck used to be building and grinding. now its inverted.</p>
-        </a>
-      </div>
-    </div>
-
-    <div class="animate-fade-up delay-2 mt-16">
-      <h2 class="font-mono text-sm text-gold mb-6">essays</h2>
-      <p class="text-dim text-sm mb-8">ai-collaborative. polished. the thinking voice.</p>
-
-      <div class="space-y-10">
-        <a href="/writing/delobotomized" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-04-05</div>
-          <h2 class="font-display text-xl mb-2">how i delobotomized chatgpt</h2>
-          <p class="text-dim">the AI isn't dumb. it's lobotomized. the fix isn't better prompts — it's rebuilding the operating environment.</p>
-        </a>
-
-        <a href="/writing/kanly-v2" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-28</div>
-          <h2 class="font-display text-xl mb-2">kanly v2</h2>
-          <p class="text-dim">stole like an artist. 119k-star repo analyzed, patterns lifted, bootleg version upgraded.</p>
-        </a>
-
-        <a href="/writing/compensation-architecture" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-28</div>
-          <h2 class="font-display text-xl mb-2">compensation architecture</h2>
-          <p class="text-dim">you don't build self-governance infrastructure because you're disciplined. you build it because you're not.</p>
-        </a>
-
-        <a href="/writing/remotion-one-prompt" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
-          <h2 class="font-display text-xl mb-2">one prompt, one video</h2>
-          <p class="text-dim">heard about remotion. never opened the docs. wrote one paragraph, got a launch video back in 60 seconds.</p>
-        </a>
-
-        <a href="/writing/judgement-per-hour" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-21</div>
-          <h2 class="font-display text-xl mb-2">judgement per hour</h2>
-          <p class="text-dim">wrong metric is lines of code. the one that compounds is judgement calls.</p>
-        </a>
-
-        <a href="/writing/build-your-own-arsenal" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-19</div>
-          <h2 class="font-display text-xl mb-2">build your own arsenal</h2>
-          <p class="text-dim">best skills don't come from browsing packs. they come from the step that keeps repeating because skipping it broke something.</p>
-        </a>
-
-        <a href="/writing/ai-yes-machine" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-18</div>
-          <h2 class="font-display text-xl mb-2">you're not thinking with ai. you're hiding behind it.</h2>
-          <p class="text-dim">there's a version of ai productivity that looks like building and functions like avoidance.</p>
-        </a>
-
-        <a href="/writing/baptism-by-ice" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-17</div>
-          <h2 class="font-display text-xl mb-2">baptism by ice</h2>
-          <p class="text-dim">walk long enough and things separate on their own. what matters. what doesn't.</p>
-        </a>
-
-        <a href="/writing/market-timing" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-13</div>
-          <h2 class="font-display text-xl mb-2">market timing</h2>
-          <p class="text-dim">co-founded knowhere. $30m volume. we were tracking to #1. window closed. market timing beats execution every time.</p>
-        </a>
-
-        <a href="/writing/new-paradigm" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-12</div>
-          <h2 class="font-display text-xl mb-2">new paradigm</h2>
-          <p class="text-dim">designer codes. developer codes. biz guy codes. the tool just works for all three now.</p>
-        </a>
-
-        <a href="/writing/kanly-governance" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
-          <h2 class="font-display text-xl mb-2">kanly governance</h2>
-          <p class="text-dim">ai makes you faster at building the wrong thing too. governance isn't overhead — it's what keeps speed from becoming expensive.</p>
-        </a>
-
-        <a href="/writing/openclaw-to-claude-code" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-09</div>
-          <h2 class="font-display text-xl mb-2">openclaw → claude code</h2>
-          <p class="text-dim">the middleware was the problem the entire time.</p>
-        </a>
-
-        <a href="/writing/ai-coding" class="block bg-surface border border-border rounded-xl p-7 hover:border-border-hover hover:bg-surface-2 transition-colors">
-          <div class="font-mono text-xs text-faint mb-3">2026-03-08</div>
-          <h2 class="font-display text-xl mb-2">ai in coding</h2>
-          <p class="text-dim">not chasing speed — trying to see where it actually changes outcomes. a 10-post thread.</p>
-        </a>
-      </div>
-    </div>
+  <div class="animate-fade-up delay-1" style="display: flex; flex-direction: column; gap: 32px;">
+    {posts.map((p) => (
+      <a href={`/writing/${p.slug}`} class="block no-underline group">
+        <div style="display: flex; gap: 16px; align-items: baseline; margin-bottom: 6px;">
+          <span class="font-mono text-faint" style="font-size: 11px; letter-spacing: 0.08em;">
+            {formatDate(p.date)}
+          </span>
+          <span class="font-mono" style={`font-size: 11px; color: ${p.tag === 'thread' ? 'var(--color-accent-2)' : p.tag === 'raw' ? 'var(--color-accent)' : 'var(--color-faint)'};`}>
+            {p.tag}
+          </span>
+        </div>
+        <h3 class="group-hover:text-accent transition-colors" style="font-size: 1.5rem; margin-bottom: 8px;">
+          {p.title}
+        </h3>
+        <p class="text-dim" style="font-size: 16px; line-height: 1.65;">{p.desc}</p>
+      </a>
+    ))}
   </div>
 </Layout>

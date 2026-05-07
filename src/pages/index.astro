@@ -1,26 +1,88 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// All writing posts — ordered by date desc (matches writing.astro)
+const posts = [
+  { slug: 'ai-fight-club', title: 'ai fight club', date: '2026-04-10', tag: 'raw' },
+  { slug: 'brain-begging-for-sugar', title: 'brain begging for sugar', date: '2026-03-21', tag: 'raw' },
+  { slug: 'delobotomized', title: 'how i delobotomized chatgpt', date: '2026-04-05', tag: 'essay' },
+  { slug: 'kanly-v2', title: 'kanly v2', date: '2026-03-28', tag: 'essay' },
+  { slug: 'compensation-architecture', title: 'compensation architecture', date: '2026-03-28', tag: 'essay' },
+  { slug: 'remotion-one-prompt', title: 'one prompt, one video', date: '2026-03-21', tag: 'essay' },
+  { slug: 'judgement-per-hour', title: 'judgement per hour', date: '2026-03-21', tag: 'essay' },
+  { slug: 'build-your-own-arsenal', title: 'build your own arsenal', date: '2026-03-19', tag: 'essay' },
+  { slug: 'ai-yes-machine', title: "you're not thinking with ai", date: '2026-03-18', tag: 'essay' },
+  { slug: 'baptism-by-ice', title: 'baptism by ice', date: '2026-03-17', tag: 'essay' },
+  { slug: 'market-timing', title: 'market timing', date: '2026-03-13', tag: 'essay' },
+  { slug: 'new-paradigm', title: 'new paradigm', date: '2026-03-12', tag: 'thread' },
+  { slug: 'kanly-governance', title: 'kanly governance', date: '2026-03-09', tag: 'essay' },
+  { slug: 'openclaw-to-claude-code', title: 'openclaw → claude code', date: '2026-03-09', tag: 'thread' },
+  { slug: 'ai-coding', title: 'ai in coding', date: '2026-03-08', tag: 'thread' },
+];
+
+const recentPosts = posts.slice(0, 4);
+
+function formatDate(d: string) {
+  return d.slice(5).replace('-', '.');
+}
 ---
 
 <Layout title="isagi" wide>
-  <div class="max-w-[500px] lg:max-w-[560px] mx-auto space-y-6 animate-fade-up">
-    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-normal mb-8" style="letter-spacing: -0.03em;">isagi</h1>
-
-    <div class="text-lg lg:text-xl text-text leading-loose space-y-5 animate-fade-up delay-1">
-      <p>pm at initia. building [redacted] — shipping soon.</p>
-
-      <p>before this: co-founded knowhere labs (terra's first nft marketplace, $30m volume). tech lead at tokenomist.ai. smart contracts at scb 10x.</p>
-
-      <p>i build across the stack — nestjs, react, solidity. run parallel claude code sessions across three repos. built kanly to keep them from lying to each other.</p>
-
-      <p>based in bangkok. reads stoics and wuxia between builds. golfs when the terminal closes.</p>
+  <!-- Hero -->
+  <header class="animate-fade-up" style="margin-bottom: 56px;">
+    <h1 style="font-size: 4rem; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 24px;">
+      isagi<span class="text-accent">.</span>
+    </h1>
+    <div class="ps-prose" style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.8;">
+      <p>
+        Building <a href="/kanly">kanly</a> —
+        a governance protocol for AI-assisted engineering. Previously co-founded knowhere ($30M volume).
+      </p>
+      <p class="text-dim">
+        I write about the parts of building with AI that don't fit on a slide deck.
+        Most of it is about <em>judgement per hour</em>, not lines per hour.
+      </p>
     </div>
+  </header>
 
-    <div class="mt-16 space-y-4 animate-fade-up delay-2">
-      <div><a href="/kanly" class="text-spice text-lg lg:text-xl hover:underline">→ kanly</a></div>
-      <div><a href="/projects" class="text-spice text-lg lg:text-xl hover:underline">→ projects</a></div>
-      <div><a href="/writing" class="text-spice text-lg lg:text-xl hover:underline">→ writing</a></div>
-      <div><a href="/brief" class="text-spice text-lg lg:text-xl hover:underline">→ brief</a></div>
+  <!-- Recent writing -->
+  <section class="animate-fade-up delay-1" style="margin-bottom: 56px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px;">
+      <h2 style="font-size: 1.5rem;">recent writing</h2>
+      <a href="/writing" class="font-mono no-underline hover:text-accent text-dim" style="font-size: 12px; letter-spacing: 0.08em;">
+        all →
+      </a>
     </div>
-  </div>
+    <div style="display: flex; flex-direction: column; gap: 0;">
+      {recentPosts.map((p) => (
+        <a
+          href={`/writing/${p.slug}`}
+          class="no-underline group"
+          style="display: grid; grid-template-columns: 88px 1fr auto; gap: 18px; align-items: baseline; padding: 8px 0; color: var(--color-text); border-bottom: 1px solid var(--color-border);"
+        >
+          <span class="font-mono text-faint" style="font-size: 11px; letter-spacing: 0.08em;">
+            {formatDate(p.date)}
+          </span>
+          <span class="font-display group-hover:text-accent transition-colors" style="font-size: 18px;">
+            {p.title}
+          </span>
+          <span class="font-mono text-faint" style="font-size: 11px;">
+            {p.tag}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Now -->
+  <section class="animate-fade-up delay-2" style="margin-bottom: 24px;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 20px;">now</h2>
+    <div class="ps-prose" style="display: flex; flex-direction: column; gap: 18px; font-size: 18px; line-height: 1.8;">
+      <p>
+        PM at Initia. Building [redacted] — shipping soon.
+        Reading Stoics and wuxia between builds.
+        Based in Bangkok. <span class="ps-status ps-status-active">active</span>
+      </p>
+    </div>
+  </section>
 </Layout>

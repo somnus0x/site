@@ -1,29 +1,70 @@
 @import "tailwindcss";
 
+/* ── Design Tokens: Direction A · Vellum ────────────────────────────── */
+
 @theme {
-  --color-bg: #0a0806;
-  --color-surface: #16120e;
-  --color-surface-2: #1e1914;
-  --color-text: #e8dcc8;
-  --color-dim: #9a8b74;
-  --color-faint: #6b5e4d;
+  /* Semantic colors — resolved by data-mode on <html> */
+  --color-bg: oklch(0.18 0.015 60);
+  --color-surface: oklch(0.22 0.018 60);
+  --color-surface-2: oklch(0.26 0.02 60);
+  --color-text: oklch(0.92 0.02 80);
+  --color-dim: oklch(0.68 0.025 75);
+  --color-faint: oklch(0.50 0.03 70);
 
-  --color-spice: #d4943a;
-  --color-gold: #c4a265;
-  --color-sand: #a89b6a;
-  --color-crimson: #c23030;
-  --color-safe: #8b9a5e;
-  --color-water: #4a7b8c;
-  --color-violet: #8b7bb5;
+  --color-accent: oklch(0.62 0.15 45);
+  --color-accent-2: oklch(0.68 0.12 75);
+  --color-safe: oklch(0.55 0.13 145);
 
-  --color-border: rgba(212, 168, 100, 0.10);
-  --color-border-hover: rgba(212, 168, 100, 0.18);
-  --color-border-strong: rgba(212, 168, 100, 0.30);
+  --color-border: color-mix(in oklch, oklch(0.62 0.15 45) 18%, transparent);
+  --color-border-hover: color-mix(in oklch, oklch(0.62 0.15 45) 32%, transparent);
+  --color-border-strong: color-mix(in oklch, oklch(0.62 0.15 45) 50%, transparent);
 
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "Crimson Pro", Georgia, serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "Berkeley Mono", "SF Mono", Menlo, Monaco, "Cascadia Code", "Roboto Mono", "Courier New", monospace;
+  /* Legacy content colors — used in article prose for decorative emphasis */
+  --color-spice: oklch(0.62 0.15 45);
+  --color-gold: oklch(0.68 0.12 75);
+  --color-sand: oklch(0.55 0.10 85);
+  --color-crimson: oklch(0.50 0.18 25);
+  --color-safe: oklch(0.55 0.13 145);
+  --color-water: oklch(0.55 0.10 230);
+  --color-violet: oklch(0.55 0.13 300);
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, monospace;
 }
+
+/* ── Mode-specific overrides via data-mode on <html> ──────────────── */
+
+/* Dark mode (default) */
+html, html[data-mode="dark"] {
+  --color-bg: oklch(0.18 0.015 60);
+  --color-surface: oklch(0.22 0.018 60);
+  --color-surface-2: oklch(0.26 0.02 60);
+  --color-text: oklch(0.92 0.02 80);
+  --color-dim: oklch(0.68 0.025 75);
+  --color-faint: oklch(0.50 0.03 70);
+  --color-border: color-mix(in oklch, oklch(0.62 0.15 45) 18%, transparent);
+  --color-border-hover: color-mix(in oklch, oklch(0.62 0.15 45) 32%, transparent);
+  --color-border-strong: color-mix(in oklch, oklch(0.62 0.15 45) 50%, transparent);
+  color-scheme: dark;
+}
+
+/* Light mode */
+html[data-mode="light"] {
+  --color-bg: oklch(0.96 0.012 80);
+  --color-surface: oklch(0.93 0.014 75);
+  --color-surface-2: oklch(0.90 0.016 70);
+  --color-text: oklch(0.22 0.018 60);
+  --color-dim: oklch(0.42 0.024 65);
+  --color-faint: oklch(0.58 0.028 70);
+  --color-border: color-mix(in oklch, oklch(0.62 0.15 45) 22%, transparent);
+  --color-border-hover: color-mix(in oklch, oklch(0.62 0.15 45) 38%, transparent);
+  --color-border-strong: color-mix(in oklch, oklch(0.62 0.15 45) 55%, transparent);
+  color-scheme: light;
+}
+
+/* ── Resets ────────────────────────────────────────────────────────── */
 
 * {
   margin: 0;
@@ -31,7 +72,8 @@
   box-sizing: border-box;
 }
 
-/* Reduced motion */
+/* ── Reduced motion ───────────────────────────────────────────────── */
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -40,9 +82,10 @@
   }
 }
 
-/* Focus visible */
+/* ── Focus visible ────────────────────────────────────────────────── */
+
 :focus-visible {
-  outline: 2px solid var(--color-spice);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -51,42 +94,62 @@
   outline: none;
 }
 
+/* ── Body ─────────────────────────────────────────────────────────── */
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.75;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(212, 148, 58, 0.03) 0%, transparent 70%);
+}
+
+/* Radial glow — dark mode only */
+html[data-mode="dark"] body,
+html:not([data-mode]) body {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    color-mix(in oklch, oklch(0.62 0.15 45) 8%, transparent) 0%,
+    transparent 60%
+  );
   background-attachment: fixed;
 }
 
-/* Responsive text scaling — bumps rem-based sizes globally */
-@media (min-width: 640px) { html { font-size: 16px; } body { font-size: 18px; } }
-@media (min-width: 1024px) { html { font-size: 17px; } body { font-size: 19px; } }
-@media (min-width: 1440px) { html { font-size: 18px; } body { font-size: 20px; } }
-
-/* Text selection */
-::selection {
-  background: rgba(212, 148, 58, 0.30);
+html[data-mode="light"] body {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% -10%,
+    color-mix(in oklch, oklch(0.62 0.15 45) 6%, transparent) 0%,
+    transparent 60%
+  );
+  background-attachment: fixed;
 }
 
-/* Scrollbar */
+/* ── Text selection ───────────────────────────────────────────────── */
+
+::selection {
+  background: color-mix(in oklch, oklch(0.62 0.15 45) 30%, transparent);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--color-faint); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-dim); }
 
+/* ── Links ────────────────────────────────────────────────────────── */
+
 a {
-  color: var(--color-spice);
+  color: var(--color-accent);
   text-decoration: none;
+  transition: color 150ms ease;
 }
 
 a:hover {
   text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 a.no-underline,
@@ -94,23 +157,21 @@ a.no-underline:hover {
   text-decoration: none;
 }
 
-/* Display heading letter-spacing — tighten serif at large sizes */
-article h1,
-h1.font-display,
-h1[class*="font-display"] {
-  letter-spacing: -0.02em;
+/* ── Display headings — never bold in Vellum ──────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
 }
 
-h2.font-display,
-h2[class*="font-display"] {
-  letter-spacing: -0.01em;
-}
+/* ── Prose styles for article/markdown content ────────────────────── */
 
-/* Prose styles for markdown content */
 article h1 {
   font-family: var(--font-display);
   font-size: 2rem;
-  font-weight: normal;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin-bottom: 1.5rem;
   color: var(--color-text);
 }
@@ -118,7 +179,8 @@ article h1 {
 article h2 {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: normal;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   margin-top: 2rem;
   margin-bottom: 1rem;
   color: var(--color-text);
@@ -127,7 +189,7 @@ article h2 {
 article h3 {
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: normal;
+  font-weight: 400;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-text);
@@ -164,8 +226,8 @@ article li {
 }
 
 article strong {
-  color: var(--color-spice);
-  font-weight: bold;
+  color: var(--color-accent);
+  font-weight: 600;
 }
 
 article code {
@@ -191,18 +253,97 @@ article pre code {
 }
 
 article a {
-  color: var(--color-spice);
+  color: var(--color-accent);
 }
 
 article a:hover {
   text-decoration: underline;
 }
 
-/* Fade-up animation */
+/* ── Prose link style (persistent underline) ──────────────────────── */
+
+.ps-prose a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--color-accent) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 150ms ease;
+}
+
+.ps-prose a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+/* ── Card ─────────────────────────────────────────────────────────── */
+
+.ps-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.ps-card:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-2);
+}
+
+.ps-card-clickable:hover {
+  transform: translateY(-1px);
+}
+
+/* ── Tag ──────────────────────────────────────────────────────────── */
+
+.ps-tag {
+  display: inline-block;
+  background: var(--color-surface-2);
+  color: var(--color-faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Status badge ─────────────────────────────────────────────────── */
+
+.ps-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ps-status-active { color: var(--color-safe); }
+.ps-status-shipped { color: var(--color-accent); }
+.ps-status-archived { color: var(--color-faint); }
+
+/* ── Margin grid (Tufte layout) ───────────────────────────────────── */
+
+.ps-margin-grid {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.ps-margin-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-faint);
+  letter-spacing: 0.06em;
+  text-align: right;
+  padding-top: 0.5em;
+  line-height: 1.6;
+}
+
+/* ── Fade-up animation ────────────────────────────────────────────── */
+
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -211,7 +352,7 @@ article a:hover {
 }
 
 .animate-fade-up {
-  animation: fade-up 0.5s ease-out both;
+  animation: fade-up 0.45s ease-out both;
 }
 
 .delay-1 { animation-delay: 0.1s; }
@@ -219,3 +360,9 @@ article a:hover {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
+
+/* ── Tabular nums — mono only, not global ─────────────────────────── */
+
+.font-mono, [class*="font-mono"] {
+  font-variant-numeric: tabular-nums;
+}

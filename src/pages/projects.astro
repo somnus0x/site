@@ -5,75 +5,115 @@ const projects = [
   {
     title: '[redacted]',
     description: 'twitter-first crypto betting platform. shipping soon.',
-    date: '2025–present',
+    year: '2025',
     status: 'active',
-    role: 'pm, full-stack',
     stack: ['nestjs', 'react', 'solidity', 'firebase'],
   },
   {
     title: 'kanly',
     description: 'formal vendetta protocols for honest intellectual conflict.',
-    date: '2026',
-    status: 'shipped',
+    year: '2026',
+    status: 'active',
     link: '/kanly',
     stack: ['markdown', 'claude code'],
   },
   {
-    title: 'knowhere labs',
-    description: 'terra\'s first nft marketplace. $30m trading volume.',
-    date: '2021–2022',
-    status: 'archived',
-    role: 'co-founder, full-stack',
-    stack: ['react', 'rust', 'cosmwasm', 'terra'],
-  },
-  {
     title: 'tokenomist.ai',
     description: 'tokenomics analysis platform. clients: coinbase, falconx.',
-    date: '2023–2025',
+    year: '2023',
     status: 'shipped',
-    role: 'tech lead',
     stack: ['python', 'react', 'postgresql'],
+  },
+  {
+    title: 'knowhere labs',
+    description: "terra's first nft marketplace. $30m trading volume.",
+    year: '2021',
+    status: 'archived',
+    stack: ['react', 'rust', 'cosmwasm', 'terra'],
   },
 ];
 
-const statusColor: Record<string, string> = {
-  active: 'text-safe',
-  shipped: 'text-spice',
-  archived: 'text-faint',
-};
+type Status = 'active' | 'shipped' | 'archived';
+
+const grouped: Record<Status, typeof projects> = { active: [], shipped: [], archived: [] };
+projects.forEach(p => grouped[p.status as Status].push(p));
+const buckets: Status[] = ['active', 'shipped', 'archived'];
 ---
 
 <Layout title="projects" description="Things I've built" wide>
-  <div class="space-y-8">
-    <h1 class="font-display text-4xl font-normal animate-fade-up">projects</h1>
+  <header class="animate-fade-up" style="margin-bottom: 48px;">
+    <h1 style="font-size: 2.5rem; letter-spacing: -0.025em;">projects</h1>
+    <p class="text-dim" style="margin-top: 12px; font-size: 17px;">Grouped by what's still moving.</p>
+  </header>
 
-    <div class="space-y-6 mt-10">
-      {projects.map((project, i) => (
-        <div class={`border border-border hover:border-border-hover hover:bg-surface-2 rounded-xl bg-surface p-7 transition-colors animate-fade-up delay-${i + 1}`}>
-          <div class="flex items-baseline justify-between mb-3">
-            <h2 class="font-display text-xl">
-              {project.link ? (
-                <a href={project.link} class="text-spice hover:underline">{project.title}</a>
-              ) : (
-                project.title
-              )}
-            </h2>
-            <div class="font-mono text-xs text-faint flex items-center gap-3">
-              <span>{project.date}</span>
-              <span class={statusColor[project.status]}>{project.status}</span>
+  {buckets.map((bucket, idx) => (
+    grouped[bucket].length > 0 && (
+      <section
+        class={`animate-fade-up delay-${idx + 1} mb-10`}
+      >
+        <!-- Margin-metadata layout at lg+, single column below -->
+        <div class="block lg:grid" style="gap: 32px;" data-margin-grid>
+          <!-- Status label (margin meta) -->
+          <aside class="ps-margin-meta hidden lg:block" style={`text-align: right; color: ${bucket === 'active' ? 'var(--color-accent)' : 'var(--color-faint)'};`}>
+            <div style={`text-transform: uppercase; color: ${bucket === 'active' ? 'var(--color-accent)' : 'var(--color-faint)'};`}>
+              {bucket}
             </div>
+            <div class="text-dim font-mono">
+              {grouped[bucket].length} {grouped[bucket].length === 1 ? 'project' : 'projects'}
+            </div>
+          </aside>
+
+          <!-- Mobile-only bucket label -->
+          <div class="lg:hidden font-mono text-[11px] tracking-[0.1em] uppercase mb-4" style={`color: ${bucket === 'active' ? 'var(--color-accent)' : 'var(--color-faint)'};`}>
+            {bucket} &middot; {grouped[bucket].length}
           </div>
-          <p class="text-dim mb-4">{project.description}</p>
-          {project.role && (
-            <p class="text-faint font-mono text-xs uppercase tracking-wider mb-3">{project.role}</p>
-          )}
-          <div class="flex flex-wrap gap-2">
-            {project.stack.map((tech) => (
-              <span class="font-mono text-xs bg-surface-2 text-faint rounded px-2 py-0.5">{tech}</span>
+
+          <!-- Cards -->
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            {grouped[bucket].map((project) => (
+              <div class="ps-card ps-card-clickable" style="position: relative; cursor: pointer;">
+                {/* Active dot */}
+                {project.status === 'active' && (
+                  <span style="position: absolute; top: 22px; left: -4px; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); box-shadow: 0 0 0 4px color-mix(in oklch, var(--color-accent) 18%, transparent);" />
+                )}
+
+                {/* Title + year */}
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: baseline; margin-bottom: 12px;">
+                  <h3 style="font-size: 1.4rem;">
+                    {project.link ? (
+                      <a href={project.link} class="hover:text-accent transition-colors no-underline" style="color: var(--color-text);">{project.title}</a>
+                    ) : (
+                      project.title
+                    )}
+                  </h3>
+                  <span class="font-mono text-faint" style="font-size: 12px; letter-spacing: 0.08em;">{project.year}</span>
+                </div>
+
+                {/* Description */}
+                <p class="text-dim" style="font-size: 16px; line-height: 1.65; margin-bottom: 18px;">{project.description}</p>
+
+                {/* Stack + status */}
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    {project.stack.map((tech) => (
+                      <span class="ps-tag">{tech}</span>
+                    ))}
+                  </div>
+                  <span class="font-mono" style={`font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: ${project.status === 'active' ? 'var(--color-accent)' : 'var(--color-faint)'};`}>
+                    {project.status}
+                  </span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
+      </section>
+    )
+  ))}
 </Layout>
+
+<style>
+  [data-margin-grid] {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+</style>

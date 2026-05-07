@@ -15,7 +15,7 @@ const {
   image = "/og-image.png"
 } = Astro.props;
 
-const containerClass = wide ? "max-w-[64rem]" : "max-w-[44rem]";
+const containerClass = wide ? "max-w-[920px]" : "max-w-[780px]";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 const path = Astro.url.pathname;
@@ -23,7 +23,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-mode="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -55,24 +55,44 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Fonts -->
+    <!-- Fonts: Fraunces (display), Source Serif 4 (body), JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
 
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Theme: apply stored preference before paint (no FOUC) -->
+    <script is:inline>
+      (function() {
+        var mode = localStorage.getItem('theme');
+        if (!mode) {
+          mode = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-mode', mode);
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col items-center">
-    <nav class="w-full px-8 sm:px-12 md:px-20 pt-10 md:pt-14 pb-16 md:pb-20 font-mono text-sm tracking-wide text-center">
-      <a href="/" class={`hover:underline ${isActive('/') ? 'text-spice' : 'text-dim hover:text-spice'}`}>isagi</a>
-      <span class="text-faint mx-4">/</span>
-      <a href="/kanly" class={`hover:underline ${isActive('/kanly') ? 'text-spice' : 'text-dim hover:text-spice'}`}>kanly</a>
-      <span class="text-faint mx-4">/</span>
-      <a href="/projects" class={`hover:underline ${isActive('/projects') ? 'text-spice' : 'text-dim hover:text-spice'}`}>projects</a>
-      <span class="text-faint mx-4">/</span>
-      <a href="/writing" class={`hover:underline ${isActive('/writing') ? 'text-spice' : 'text-dim hover:text-spice'}`}>writing</a>
-      <span class="text-faint mx-4">/</span>
-      <a href="/reading" class={`hover:underline ${isActive('/reading') ? 'text-spice' : 'text-dim hover:text-spice'}`}>reading</a>
+    <!-- Nav -->
+    <nav class="w-full pt-7 pb-10 flex items-center justify-center gap-0 font-mono text-[13px] tracking-[0.05em]" style="padding-left: 48px; padding-right: 48px;">
+      <a href="/" class={`py-1 no-underline transition-colors ${isActive('/') ? 'text-accent' : 'text-dim hover:text-accent'}`}>index</a>
+      <span class="text-faint mx-3.5">/</span>
+      <a href="/writing" class={`py-1 no-underline transition-colors ${isActive('/writing') ? 'text-accent' : 'text-dim hover:text-accent'}`}>writing</a>
+      <span class="text-faint mx-3.5">/</span>
+      <a href="/projects" class={`py-1 no-underline transition-colors ${isActive('/projects') ? 'text-accent' : 'text-dim hover:text-accent'}`}>projects</a>
+      <span class="text-faint mx-3.5">/</span>
+      <a href="/kanly" class={`py-1 no-underline transition-colors ${isActive('/kanly') ? 'text-accent' : 'text-dim hover:text-accent'}`}>kanly</a>
+      <span class="text-faint mx-3.5">/</span>
+      <a href="/reading" class={`py-1 no-underline transition-colors ${isActive('/reading') ? 'text-accent' : 'text-dim hover:text-accent'}`}>reading</a>
+      <span class="text-faint mx-3.5">·</span>
+      <button
+        id="theme-toggle"
+        class="py-1 text-faint hover:text-accent transition-colors cursor-pointer bg-transparent border-none font-mono text-[13px] tracking-[0.05em]"
+        aria-label="Toggle light/dark mode"
+      >
+        <span id="theme-label">light</span>
+      </button>
     </nav>
 
     <div class={`${containerClass} mx-auto w-full px-8 sm:px-12 md:px-20 lg:px-24 flex-1`}>
@@ -80,11 +100,37 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
         <slot />
       </main>
 
-      <footer class="mt-32 pt-8 border-t border-border text-faint text-sm font-mono text-center pb-12">
-        <a href="https://github.com/somnus0x" target="_blank" rel="noopener" class="hover:text-spice">github</a>
-        <span class="mx-4">/</span>
-        <a href="https://x.com/0xisagiboi" target="_blank" rel="noopener" class="hover:text-spice">x</a>
+      <!-- Footer -->
+      <footer class="mt-16 pt-6 border-t border-border font-mono text-[12px] text-faint flex justify-between items-center flex-wrap gap-3 pb-12">
+        <span>&copy; 2026 &middot; made with intent</span>
+        <span class="flex gap-[18px]">
+          <a href="https://x.com/0xisagiboi" target="_blank" rel="noopener" class="text-faint hover:text-accent no-underline transition-colors">twitter</a>
+          <a href="https://github.com/somnus0x" target="_blank" rel="noopener" class="text-faint hover:text-accent no-underline transition-colors">github</a>
+          <a href="/rss.xml" class="text-faint hover:text-accent no-underline transition-colors">rss</a>
+        </span>
       </footer>
     </div>
+
+    <!-- Theme toggle script -->
+    <script is:inline>
+      (function() {
+        var toggle = document.getElementById('theme-toggle');
+        var label = document.getElementById('theme-label');
+        function getMode() {
+          return document.documentElement.getAttribute('data-mode') || 'dark';
+        }
+        function updateLabel() {
+          // Label shows what you'll switch TO
+          label.textContent = getMode() === 'dark' ? 'light' : 'dark';
+        }
+        updateLabel();
+        toggle.addEventListener('click', function() {
+          var next = getMode() === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-mode', next);
+          localStorage.setItem('theme', next);
+          updateLabel();
+        });
+      })();
+    </script>
   </body>
 </html>
