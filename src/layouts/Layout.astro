@@ -75,7 +75,7 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
   </head>
   <body class="min-h-screen flex flex-col items-center">
     <!-- Nav -->
-    <nav class="w-full pt-7 pb-10 flex items-center justify-center gap-0 font-mono text-[13px] tracking-[0.05em]" style="padding-left: 48px; padding-right: 48px;">
+    <nav class="w-full pt-7 pb-10 flex flex-wrap items-center justify-center gap-0 font-mono text-[13px] tracking-[0.05em]" style="padding-left: 48px; padding-right: 48px;">
       <a href="/" class={`py-1 no-underline transition-colors ${isActive('/') ? 'text-accent' : 'text-dim hover:text-accent'}`}>index</a>
       <span class="text-faint mx-3.5">/</span>
       <a href="/writing" class={`py-1 no-underline transition-colors ${isActive('/writing') ? 'text-accent' : 'text-dim hover:text-accent'}`}>writing</a>
@@ -104,8 +104,10 @@ const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith
       <footer class="mt-16 pt-6 border-t border-border font-mono text-[12px] text-faint flex justify-between items-center flex-wrap gap-3 pb-12">
         <span>&copy; 2026 &middot; made with intent</span>
         <span class="flex gap-[18px]">
+          <a href="/brief" class="text-faint hover:text-accent no-underline transition-colors">brief</a>
           <a href="https://x.com/0xisagiboi" target="_blank" rel="noopener" class="text-faint hover:text-accent no-underline transition-colors">twitter</a>
           <a href="https://github.com/somnus0x" target="_blank" rel="noopener" class="text-faint hover:text-accent no-underline transition-colors">github</a>
+          <a href="mailto:supasonk@gmail.com" class="text-faint hover:text-accent no-underline transition-colors">email</a>
           <a href="/rss.xml" class="text-faint hover:text-accent no-underline transition-colors">rss</a>
         </span>
       </footer>
