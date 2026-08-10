@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="reviewers have to earn it" description="three models grade my drafts. axelrod says they have to earn the right to be trusted.">
+  <div class="space-y-6">
+    <div class="font-mono text-xs text-faint mb-4">
+      <a href="/writing" class="text-accent hover:underline">writing</a> <span class="text-faint">/</span> reviewers-have-to-earn-it
+    </div>
+
+    <h1 class="font-display text-3xl font-normal animate-fade-up">reviewers have to earn it</h1>
+
+    <div class="essay mt-10 animate-fade-up delay-1">
+      <p>been reading axelrod. <em>the evolution of cooperation</em>.</p>
+      <p>so i made my ai reviewers play it. three models grade my drafts. now they have to earn the right to be trusted.</p>
+      <hr class="my-12 border-border" />
+      <p>every round i log which flags were real and which i rejected, with a reason.</p>
+      <p>cooperate and your reviews get lighter. flag noise and you get read harder.</p>
+      <p>one model runs 0.91 precision. one runs 0.58 — half its flags just prescribe away my voice.</p>
+      <hr class="my-12 border-border" />
+      <p>turns out review isn’t about how many eyes.</p>
+      <p>it’s which eyes have been right before.</p>
+      <p class="mt-6 text-spice">tit for tat, but the players are the models grading you.</p>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-border">
+      <a href="/writing" class="text-accent hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .essay p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+</style>

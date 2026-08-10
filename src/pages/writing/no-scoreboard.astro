@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="no scoreboard" description="everyone remembers their one correct prediction. nobody remembers the twenty they got wrong.">
+  <div class="space-y-6">
+    <div class="font-mono text-xs text-faint mb-4">
+      <a href="/writing" class="text-accent hover:underline">writing</a> <span class="text-faint">/</span> no-scoreboard
+    </div>
+
+    <h1 class="font-display text-3xl font-normal animate-fade-up">no scoreboard</h1>
+
+    <div class="essay mt-10 animate-fade-up delay-1">
+      <p>everyone remembers their one correct prediction.</p>
+      <p>nobody remembers the 20 they got wrong.</p>
+      <hr class="my-12 border-border" />
+      <p>the internet has no scoreboard.</p>
+      <p class="mt-6 text-spice">wonder how we can solve that.</p>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-border">
+      <a href="/writing" class="text-accent hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .essay p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+</style>

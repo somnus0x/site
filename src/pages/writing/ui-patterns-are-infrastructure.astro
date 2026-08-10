@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="ui patterns are infrastructure" description="every flow i improved recently started with show me five apps that solved this already.">
+  <div class="space-y-6">
+    <div class="font-mono text-xs text-faint mb-4">
+      <a href="/writing" class="text-accent hover:underline">writing</a> <span class="text-faint">/</span> ui-patterns-are-infrastructure
+    </div>
+
+    <h1 class="font-display text-3xl font-normal animate-fade-up">ui patterns are infrastructure</h1>
+
+    <div class="essay mt-10 animate-fade-up delay-1">
+      <p>starting to think good ui patterns are infrastructure.</p>
+      <p>every flow i’ve improved recently started with “show me five apps that solved this already.”</p>
+      <hr class="my-12 border-border" />
+      <p class="mt-6 text-spice">shipping gets a lot faster when you stop reinventing forms.</p>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-border">
+      <a href="/writing" class="text-accent hover:underline">← back to writing</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .essay p {
+    line-height: 1.8;
+    margin-bottom: 0.25rem;
+  }
+</style>
